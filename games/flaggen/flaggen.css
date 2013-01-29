@@ -1,0 +1,49 @@
+@import url(http://fonts.googleapis.com/css?family=Denk+One);
+
+body {
+    background: #beed47;
+    font-family: 'Denk One';
+    overflow: hidden;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+#wrapper {
+    bottom: 32%;
+    left: 15%;
+    position: absolute;
+    right: 15%;
+    text-align: center;
+    top: 32%;
+}
+
+#start {
+    background: #000;
+    border: 2px solid #fff;
+    border-radius: 16px;
+    box-shadow: 0 0 6px 2px #93b837;
+    color: #fff;
+    display: block;
+    height: 100%;
+    outline: none;
+    text-decoration: none;
+}
+
+#flag {
+    background-size: 100% 100%;
+    box-shadow: 0 0 6px 2px #93b837; 
+    display: none;
+    height: 100%;
+    left: 30%;
+    outline: none;
+    position: absolute;
+    right: 30%;
+}
+
+#solution {
+    bottom: 10%;
+    height: 16%;
+    position: absolute;
+    right: -100%;
+    text-align: center;
+    width: 100%;
+}
