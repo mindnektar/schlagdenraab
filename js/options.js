@@ -1,6 +1,5 @@
 $(function() {
     var $form = $('#options form'),
-        $games = $('input', $form),
         $save = $('#save');
 
     (function init() {
@@ -8,9 +7,9 @@ $(function() {
     })();
 
     function _saveClick() {
-        var data = [];
-        $.each($games, function(_, game) {
-
-        });
+        $.post(
+            'xhr/options.php',
+            $form.serialize()
+        );
     }
 });
