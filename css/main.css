@@ -6,6 +6,10 @@ body {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
+.clear {
+    clear: both;
+}
+
 #wrapper {
     bottom: 35%;
     left: 18%;
@@ -55,21 +59,33 @@ body {
     width: 100%;
 }
 
-#manual {
+.container {
     background: #86aa2a;
     bottom: 2%;
     border: 2px solid #fff;
     border-radius: 6px;
     box-shadow: 0 0 6px 2px #93b837;
-    display: none;
     font-family: Helvetica, sans-serif;
     font-size: 14px;
-    left: 27%;
+    left: 2%;
     padding: 8px 0 8px 8px;
     position: absolute;
     right: 2%;
     text-align: justify;
     top: 2%;
+}
+
+.container h1 {
+    font-family: Denk One;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 24px 0;
+}
+
+#manual {
+    display: none;
+    left: 27%;
 }
 
 #manual > a {
@@ -120,14 +136,6 @@ body {
     margin-bottom: 8px;
 }
 
-#manual .content h1 {
-    font-family: Denk One;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    margin: 0 0 24px 0;
-}
-
 #manual .content h2 {
     font-size: 20px;
     font-weight: bold;
@@ -136,4 +144,14 @@ body {
 
 #manual .content p {
     margin: 0 0 12px 0;
+}
+
+#options label {
+    display: block;
+    float: left;
+    width: 20%;
+}
+
+#options div {
+    margin-bottom: 16px;
 }

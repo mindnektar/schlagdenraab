@@ -20,7 +20,7 @@ header('Content-Type: text/html; charset=utf-8');
     </div>
 </div>
 
-<div id="manual">
+<div id="manual" class="container">
     <a href="javascript:" class="close">Schließen</a>
     <a href="" target="_blank" class="play">Spielen</a>
     
