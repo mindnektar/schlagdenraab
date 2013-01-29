@@ -8,6 +8,9 @@ header('Content-Type: text/html; charset=utf-8');
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+        var games = <?php echo file_get_contents('db/games'); ?>;
+    </script>
     <script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>

@@ -15,86 +15,6 @@ $(function() {
             {name: 'Knobeln & Köpfchen', color: '#eb961e'}
         ],
         currentCategory = 0,
-        games = [
-            [
-                {name: 'abraeumen', title: 'Abräumen'},
-                {name: 'armbrust', title: 'Armbrust'},
-                {name: 'ball_wedeln', title: 'Ball wedeln'},
-                {name: 'medizinbaelle', title: 'Medizinbälle'},
-                {name: 'squash', title: 'Squash'},
-                {name: 'ball_saugen', title: 'Ball saugen'},
-                {name: 'staebchenessen', title: 'Stäbchenessen'},
-                //{name: 'das_ei', title: 'Das Ei'},
-                {name: 'pusteball', title: 'Pusteball'},
-                {name: 'dosenschiessen', title: 'Dosenschießen'},
-                {name: 'kartenpusten', title: 'Kartenpusten'},
-                {name: 'maexchen', title: 'Mäxchen'},
-                {name: 'wuerfeln', title: 'Würfeln'},
-                {name: 'kartenduell', title: 'Kartenduell'},
-                //{name: 'papierflieger', title: 'Papierflieger'},
-                {name: 'katapult', title: 'Katapult'},
-                {name: 'hochschuss', title: 'Hochschuss'},
-                {name: 'schnibbeln', title: 'Schnibbeln'},
-                {name: 'eierlauf', title: 'Eierlauf'},
-                {name: 'buecher_tragen', title: 'Bücher tragen'},
-                {name: 'bilboquet', title: 'Bilboquet'},
-                {name: 'scheiben_schnappen', title: 'Scheiben schnappen'},
-                {name: 'elfmeterschiessen', title: 'Elfmeterschießen'},
-                {name: 'strippenzieher', title: 'Strippenzieher'}
-            ],
-            [
-                {name: 'bechern', title: 'Bechern'},
-                {name: 'wann_war_das', title: 'Wann war das?'},
-                {name: 'schaetzen', title: 'Schätzen'},
-                {name: 'wo_liegt_was', title: 'Wo liegt was?'},
-                {name: 'golf', title: 'Golf'},
-                {name: 'slalom', title: 'Slalom'},
-                {name: 'curling', title: 'Curling'},
-                {name: 'englisch_fussball', title: 'Englisch Fußball'},
-                {name: 'entfernungen', title: 'Entfernungen'},
-                {name: 'mikado', title: 'Mikado'},
-                {name: 'wer_weiss_mehr', title: 'Wer weiß mehr?'},
-                //{name: 'schachteltraeger', title: 'Schachtelträger'},
-                {name: 'kreiseln', title: 'Kreiseln'},
-                {name: 'kugellabyrinth', title: 'Kugellabyrinth'},
-                {name: 'zungenbrecher', title: 'Zungenbrecher'},
-                {name: 'die_theke', title: 'Die Theke'},
-                {name: 'turm_bauen', title: 'Turm bauen'},
-                {name: 'balancieren', title: 'Balancieren'},
-                {name: 'suchmaschine', title: 'Suchmaschine'},
-                {name: 'pachisi', title: 'Pachisi'},
-                {name: 'torwand', title: 'Torwand'},
-                {name: 'carrom', title: 'Carrom'},
-                {name: 'jakkolo', title: 'Jakkolo'},
-                {name: 'chipflip', title: 'Chipflip'},
-                {name: 'darts', title: 'Darts'}
-            ],
-            [
-                {name: 'memory', title: 'Memory'},
-                {name: 'setzkasten', title: 'Setzkasten'},
-                {name: 'kofferpacken', title: 'Kofferpacken'},
-                {name: 'merk_mal', title: 'Merk mal!'},
-                {name: 'buchstabieren', title: 'Buchstabieren'},
-                {name: 'buchstaben_zaehlen', title: 'Buchstaben zählen'},
-                //{name: 'lieder_summen', title: 'Lieder summen'},
-                //{name: 'hoch-stapler', title: 'Hoch-Stapler'},
-                {name: 'fremdsprachen', title: 'Fremdsprachen'},
-                {name: 'was_fehlt', title: 'Was fehlt?'},
-                {name: 'stimmts', title: 'Stimmt\'s?'},
-                {name: 'kopfrechnen', title: 'Kopfrechnen'},
-                //{name: 'lieder_malen', title: 'Lieder malen'},
-                {name: 'sortieren', title: 'Sortieren'},
-                {name: 'woerter_rueckwaerts', title: 'Wörter rückwärts'},
-                {name: 'geld_fuehlen', title: 'Geld fühlen'},
-                {name: 'laenderumrisse', title: 'Länderumrisse'},
-                {name: 'marienkaefer', title: 'Marienkäfer'},
-                {name: 'knobeln', title: 'Knobeln'},
-                {name: 'kuenstlernamen', title: 'Künstlernamen'},
-                {name: 'flaggen', title: 'Flaggen', playable: true},
-                {name: 'blamieren_oder_kassieren', title: 'Blamieren oder Kassieren'},
-                {name: 'autokennzeichen', title: 'Autokennzeichen'}
-            ]
-        ],
         currentGame = 0,
         shuffling = false,
 
@@ -103,6 +23,8 @@ $(function() {
         };
     
     (function init() {
+        removeInactiveGames();
+
         switchCategory(0);
         
         adjustFontSize();
@@ -155,6 +77,17 @@ $(function() {
                 }
             });
         });
+    }
+
+    function removeInactiveGames() {
+        for (var i = 0; i < games.length; i++) {
+            for (var j = 0; j < games[i].length; j++) {
+                if (!games[i][j].active) {
+                    games[i].splice(j, 1);
+                    j--;
+                }
+            }
+        }
     }
     
     function shuffle(iteration, interval, slowDownAt) {
