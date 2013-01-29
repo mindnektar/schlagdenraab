@@ -4,22 +4,24 @@ header('Content-Type: text/html; charset=utf-8');
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Schlag den Raab - Flaggen</title>
+    <title>Schlag den Raab - Buchstabensalat</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="../../css/main.css" />
-    <link rel="stylesheet" type="text/css" href="flaggen.css" />
+    <link rel="stylesheet" type="text/css" href="buchstabensalat.css" />
     <script type="text/javascript" src="../../js/jquery.js"></script>
-    <script type="text/javascript" src="md5.js"></script>
-    <script type="text/javascript" src="flaggen.js"></script>
+    <script type="text/javascript" src="buchstabensalat.js"></script>
 </head>
 <body>
 
-<div id="flaggen" class="wrapper">
+<div class="wrapper">
     <a href="javascript:" id="start">Start</a>
-    <a href="javascript:" id="flag"></a>
+    
+    <div id="letters">
+        <div id="cat"></div>
+        <ul id="puzzle"></ul>
+        <ul id="solution"></ul>
+    </div>
 </div>
-
-<div id="solution"></div>
 
 </body>
 </html>

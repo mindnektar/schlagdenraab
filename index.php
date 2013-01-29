@@ -15,7 +15,7 @@ header('Content-Type: text/html; charset=utf-8');
 </head>
 <body>
 
-<div id="wrapper">
+<div class="wrapper">
     <div id="category"></div>
 
     <div id="game">
