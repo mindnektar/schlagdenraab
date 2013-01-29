@@ -50,7 +50,8 @@ $(function() {
         currentPuzzle,
         currentLetter,
         delay = 1000,
-        gameState = 0;
+        gameState = 0,
+        t;
 
     (function init() {
         adjustFontSize();
@@ -71,14 +72,16 @@ $(function() {
         if (!interactable) {
             return;
         }
-        
+
         switch (gameState) {
             case 0:
                 gameState = 1;
+                clearTimeout(t);
                 break;
                 
             case 1:
                 gameState = 2;
+                interactable = false;
                 revealLetter();
                 break;
                 
@@ -132,7 +135,9 @@ $(function() {
             return;
         }
         
-        interactable = true;
+        if (gameState === 0) {
+            interactable = true;
+        }
         
         $puzzleLetters.eq(currentLetter).slideUp(200, function() {
             $.each(currentSolution, function(key, letter) {
@@ -143,12 +148,15 @@ $(function() {
             
             posInSolution = possibleKeys[parseInt(Math.random() * possibleKeys.length)];
             currentSolution = currentSolution.substring(0, posInSolution) + '_' + currentSolution.substring(posInSolution + 1);
-            
+
             $solutionLetters.eq(posInSolution).slideDown(200, function() {
                 currentLetter++;
                 
-                if (currentLetter <= currentPuzzle.length) {
-                    setTimeout(revealLetter, gameState === 0 ? 2000 : 100);
+                if (currentLetter < currentPuzzle.length) {
+                    t = setTimeout(revealLetter, gameState === 0 ? 2000 : 100);
+                } else {
+                    interactable = true;
+                    gameState = 2;
                 }
             });
         });
