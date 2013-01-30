@@ -1,5 +1,5 @@
 $(function() {
-    var $wrapper = $('#wrapper'),
+    var $wrapper = $('.wrapper'),
         $game = $('#game'),
         $category = $('#category'),
         $list = $('#list'),
