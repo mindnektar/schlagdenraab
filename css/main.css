@@ -20,47 +20,6 @@ body {
     top: 35%;
 }
 
-#category,
-#game {
-    border-radius: 6px;
-    box-shadow: 0 0 6px 2px #93b837;
-    height: 40%;
-    overflow: hidden;
-    position: absolute;
-    width: 100%;
-}
-
-#category {
-    border: 2px solid #fff;
-    color: #fff;
-    cursor: pointer;
-    text-overflow: ellipsis;
-    top: 0;
-    white-space: nowrap;
-}
-
-#game {
-    background: #fff;
-    border: 2px solid #93b837;
-    bottom: 0;
-}
-
-#game li {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-#list {
-    cursor: pointer;
-    font-weight: bold;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    width: 100%;
-}
-
 .container {
     background: #86aa2a;
     bottom: 2%;
@@ -83,79 +42,6 @@ body {
     font-weight: bold;
     text-align: center;
     margin: 0 0 24px 0;
-}
-
-#manual {
-    display: none;
-    left: 27%;
-}
-
-#manual > a {
-    border: 2px solid white;
-    border-top-left-radius: 18px;
-    border-bottom-left-radius: 18px;
-    box-shadow: 0 0 6px 0px #93B837;
-    color: white;
-    font-size: 21px;
-    font-weight: bold;
-    height: 32px;
-    left: -144px;
-    line-height: 32px;
-    position: absolute;
-    text-align: center;
-    text-decoration: none;
-    width: 140px;
-}
-
-#manual .close {
-    background: black;
-    bottom: 6px;
-}
-
-#manual .play {
-    background: #2c4d0d;
-    bottom: 46px;
-    display: none;
-}
-
-#manual .content {
-    height: 100%;
-    overflow-y: auto;
-    padding-right: 8px;
-    text-shadow: 1px 1px 0 #647732;
-}
-
-#manual .content > div {
-    display: none;
-}
-
-#manual .content ul {
-    margin: 8px 0 16px 0;
-    padding-left: 24px;
-}
-
-#manual .content li {
-    margin-bottom: 8px;
-}
-
-#manual .content h2 {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 0 0 8px 0;
-}
-
-#manual .content p {
-    margin: 0 0 12px 0;
-}
-
-#options label {
-    display: block;
-    float: left;
-    width: 20%;
-}
-
-#options div {
-    margin-bottom: 16px;
 }
 
 #start {

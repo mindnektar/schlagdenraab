@@ -104,7 +104,7 @@ $(function() {
             {name: 'Libya', title: 'Libyen'},
             {name: 'Liechtenstein', title: 'Liechtenstein'},
             {name: 'Lithuania', title: 'Litauen'},
-            {name: 'Luxembourg', title: 'Luxemburg'},
+            //{name: 'Luxembourg', title: 'Luxemburg'},
             {name: 'Macedonia', title: 'Mazedonien'},
             {name: 'Madagascar', title: 'Madagaskar'},
             {name: 'Malawi', title: 'Malawi'},
@@ -126,7 +126,7 @@ $(function() {
             {name: 'Namibia', title: 'Namibia'},
             {name: 'Nauru', title: 'Nauru'},
             {name: 'Nepal', title: 'Nepal'},
-            {name: 'the_Netherlands', title: 'Niederlande'},
+            //{name: 'the_Netherlands', title: 'Niederlande'},
             {name: 'New_Zealand', title: 'Neuseeland'},
             {name: 'Nicaragua', title: 'Nicaragua'},
             {name: 'Niger', title: 'Niger'},
@@ -228,6 +228,10 @@ $(function() {
         interactable = false;
 
         if (solved) {
+            if (!flags.length) {
+                return;
+            }
+
             solved = false;
 
             $flag.add($solution).fadeOut(delay).promise().done(function() {
@@ -250,12 +254,15 @@ $(function() {
     }
 
     function pickFlag() {
-        var flag = flags[parseInt(Math.random() * flags.length)],
+        var flagId = parseInt(Math.random() * flags.length),
+            flag = flags[flagId],
             fileName = 'Flag_of_' + flag.name + '.svg',
             fileNameHash = md5(fileName),
             pA = fileNameHash.substring(0, 1),
             pB = fileNameHash.substring(0, 2),
             url = 'http://upload.wikimedia.org/wikipedia/commons/' + pA + '/' + pB + '/' + fileName;
+
+        flags.splice(flagId, 1);
 
         $('<img>').attr({src: url}).load(function() {
             $flag
