@@ -1,0 +1,47 @@
+#scoreboard {
+    background: #e1d007;
+    border: 2px solid #fff;
+    border-radius: 16px;
+    box-shadow: 0 0 6px 2px #93b837;
+    bottom: 10%;
+    left: 30%;
+    right: 30%;
+    top: 10%;
+}
+
+#gamelist {
+    height: 5.3%;
+    margin: 2%;
+    padding: 0;
+}
+
+#gamelist li {
+    background: #fff;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    box-shadow: 0 0 3px 0px #000 inset;
+    float: left;
+    height: 100%;
+    margin-right: 0.8%;
+    list-style: none;
+    width: 5.3%;
+}
+
+.scorecontainer {
+    float: left;
+    height: 89%;
+    width: 50%;
+}
+
+.name {
+    text-shadow: 2px 2px 0 #fff, 2px -2px 0 #fff, -2px -2px 0 #fff, -2px 2px 0 #fff;
+}
+
+.totalscore {
+    background: #000;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    height: 25%;
+    margin-left: 15%;
+    width: 70%;
+}

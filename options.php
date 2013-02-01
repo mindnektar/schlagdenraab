@@ -6,7 +6,7 @@ $data = json_decode(file_get_contents('db/games'), true);
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Schlag den Raab</title>
+    <title>Schlag den Raab - Optionen</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <script type="text/javascript" src="js/jquery.js"></script>
