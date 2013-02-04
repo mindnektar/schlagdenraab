@@ -1,0 +1,27 @@
+.wrapper {
+    bottom: 2%;
+    left: 2%;
+    right: 2%;
+    top: 2%;
+}
+
+#map {
+    border: 2px solid #fff;
+    border-radius: 16px;
+    box-shadow: 0 0 6px 2px #93b837;
+    height: 90%;
+    overflow: hidden;
+    width: 100%;
+}
+
+#map.audience {
+    height: 100%;
+}
+
+.player div {
+    display: none;
+}
+
+#solve {
+    display: none;
+}
