@@ -1,10 +1,7 @@
 $(function() {
     var $solve = $('#solve'),
     
-        guesses = {
-            blue: null,
-            red: null
-        },
+        guesses = [],
         ws;
     
     (function init() {
@@ -17,20 +14,23 @@ $(function() {
         $solve.click(_solveClick);
     })();
     
-    function playerInput(e) {console.log(e);
-        guesses[e.data.player] = {
+    function playerInput(e) {
+        guesses.push({
+            who: e.data.player,
             lat: e.data.lat,
             lng: e.data.lng
-        };
+        });
         
         $('#' + e.data.player + ' div').show();
 
-        if (guesses.blue && guesses.red) {
+        if (guesses.length === 2) {
             $solve.show();
         }
     }
     
     function _solveClick() {
-        ws.send('solve', {positions: $.extend({solution: {lat: 0, lng: 0}}, guesses)});
+        guesses.push({who: 'solution', lat: 0, lng: 0});
+
+        ws.send('solve', {positions: guesses});
     }
 });
