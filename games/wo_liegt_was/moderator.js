@@ -30,6 +30,16 @@ $(function() {
                 question: 'Wo wird der Friedensnobelpreis verliehen?',
                 info: 'Oslo, Norwegen',
                 solution: {lat: 59.913869, lng: 10.752245}
+            },
+            {
+                question: 'Wo steht das Atomium?',
+                info: 'Brüssel, Belgien',
+                solution: {lat: 50.894947, lng: 4.341413}
+            },
+            {
+                question: 'Wo wurde der Reißverschluss erfunden?',
+                info: 'Chicago, Illinois, Vereinigte Staaten',
+                solution: {lat: 41.878114, lng: -87.629798}
             }
         ],
 
