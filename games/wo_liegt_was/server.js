@@ -8,10 +8,14 @@ wss.on('connection', function(ws) {
 
     ws.on('message', function(msg) {
         var toSend = JSON.parse(msg);
+
+        if (!toSend.data) {
+            toSend.data = {};
+        }
         
         toSend.data.player = ws.upgradeReq.url.substring(1);
         toSend = JSON.stringify(toSend);
-        
+
         for (var i = 0; i < cons.length; i++) {
             cons[i].send(toSend);
         }

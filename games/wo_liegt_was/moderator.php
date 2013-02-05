@@ -16,9 +16,14 @@ header('Content-Type: text/html; charset=utf-8');
 <body>
 
 <div class="wrapper">
-    <div id="blue" class="player">Blau<div>Bereit!</div></div>
-    <div id="red" class="player">Rot<div>Bereit!</div></div>
-    <a href="javascript:" id="solve">Auflösen</a>
+    <a href="javascript:" id="start">Start</a>
+
+    <div id="game">
+        <div id="question"></div>
+        <div class="player blue">Blau<div>Bereit!</div></div>
+        <div class="player red">Rot<div>Bereit!</div></div>
+        <a href="javascript:" id="continue"></a>
+    </div>
 </div>
 
 </body>

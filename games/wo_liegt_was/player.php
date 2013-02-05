@@ -18,7 +18,7 @@ header('Content-Type: text/html; charset=utf-8');
 
 <div class="wrapper">
     <div id="map"></div>
-    <button id="submit">Abschicken</button>
+    <button id="submit" disabled="disabled">Abschicken</button>
 </div>
 
 </body>

@@ -1,8 +1,11 @@
 $(function() {
     var $map = $('#map'),
+        $blue = $('.info.blue'),
+        $red = $('.info.red'),
         
         map,
         markers = {},
+        polylines = {},
         positions,
         ws,
         interval;
@@ -24,7 +27,8 @@ $(function() {
 
         ws = $.websocket("ws://127.0.0.1:8080/audience", {
             events: {
-                solve: solve
+                solve: solve,
+                start: start
             }
         });
     })();
@@ -35,12 +39,24 @@ $(function() {
         interval = setInterval(placeMarker, 2000);
     }
 
+    function start() {
+        $.each(markers, function(i) {
+            markers[i].setMap(null);
+        });
+        $.each(polylines, function(i) {
+            polylines[i].setMap(null);
+        });
+
+        $blue.add($red).hide();
+    }
+
     function placeMarker() {
-        var markerOpts = {
+        var position = positions.splice(0, 1)[0],
+            markerOpts = {
                 clickable: false,
+                icon: position.who + '.png',
                 map: map
-            },
-            position = positions.splice(0, 1)[0];
+            };
 
         markerOpts.position = new google.maps.LatLng(position.lat, position.lng);
 
@@ -48,7 +64,7 @@ $(function() {
 
         if (!positions.length) {
             clearInterval(interval);
-            showDistances();
+            setTimeout(showDistances, 2000);
         }
     }
 
@@ -57,13 +73,19 @@ $(function() {
                 clickable: false,
                 map: map
             },
-            polylineBlue = new google.maps.Polyline(polylineOpts),
-            polylineRed = new google.maps.Polyline(polylineOpts);
+            distanceBlue = parseInt(google.maps.geometry.spherical.computeDistanceBetween(markers.blue.getPosition(), markers.solution.getPosition()) / 1000),
+            distanceRed = parseInt(google.maps.geometry.spherical.computeDistanceBetween(markers.red.getPosition(), markers.solution.getPosition()) / 1000);
 
-        polylineBlue.setPath([markers.blue.getPosition(), markers.solution.getPosition()]);
-        polylineRed.setPath([markers.red.getPosition(), markers.solution.getPosition()]);
+        polylines.blue = new google.maps.Polyline($.extend({strokeColor: '#09f'}, polylineOpts));
+        polylines.blue.setPath([markers.blue.getPosition(), markers.solution.getPosition()]);
 
-        console.log(google.maps.geometry.spherical.computeDistanceBetween(markers.blue.getPosition(), markers.solution.getPosition()));
-        console.log(google.maps.geometry.spherical.computeDistanceBetween(markers.red.getPosition(), markers.solution.getPosition()));
+
+        polylines.red = new google.maps.Polyline($.extend({strokeColor: '#f00'}, polylineOpts));
+        polylines.red.setPath([markers.red.getPosition(), markers.solution.getPosition()]);
+
+        $blue.text(distanceBlue + ' km').show();
+        $red.text(distanceRed + ' km').show();
+
+        ws.send('readyForNext');
     }
 });

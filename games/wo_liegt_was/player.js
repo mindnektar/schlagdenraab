@@ -5,31 +5,40 @@ $(function() {
         map,
         marker,
         ws,
-        color;
+        color = location.href.split('?')[1];
     
     (function init() {
         var startPos = new google.maps.LatLng(30, 0),
             mapOpts = {
+                draggableCursor: 'crosshair',
                 mapTypeControl: false,
                 mapTypeId: google.maps.MapTypeId.SATELLITE,
+                maxZoom: 3,
+                minZoom: 3,
                 panControl: false,
                 center: startPos,
                 scaleControl: false,
                 streetViewControl: false,
-                zoom: 3
+                zoom: 3,
+                zoomControl: false
             },
             markerOpts = {
                 clickable: false,
+                icon: color + '.png',
                 position: startPos
             };
         
         map = new google.maps.Map($map[0], mapOpts);
         marker = new google.maps.Marker(markerOpts);
         marker.setMap(map);
-        
-        color = location.href.split('?')[1];
-        
-        ws = $.websocket("ws://127.0.0.1:8080/" + color);
+
+        ws = $.websocket("ws://127.0.0.1:8080/" + color, {
+            events: {
+                start: function() {
+                    $submit.attr('disabled', false);
+                }
+            }
+        });
         
         google.maps.event.addListener(map, 'click', _mapClick);
         $submit.click(_submitClick);

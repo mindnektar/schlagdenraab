@@ -18,6 +18,8 @@ header('Content-Type: text/html; charset=utf-8');
 
 <div class="wrapper">
     <div id="map" class="audience"></div>
+    <div class="info blue"></div>
+    <div class="info red"></div>
 </div>
 
 </body>

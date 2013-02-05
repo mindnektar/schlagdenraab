@@ -5,6 +5,18 @@
     top: 2%;
 }
 
+#start {
+    height: 40%;
+    left: 25%;
+    position: absolute;
+    right: 25%;
+    top: 30%;
+}
+
+#game {
+    display: none;
+}
+
 #map {
     border: 2px solid #fff;
     border-radius: 16px;
@@ -24,4 +36,28 @@
 
 #solve {
     display: none;
+}
+
+.info {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 6px 0px #000;
+    display: none;
+    font-size: 42px;
+    height: 80px;
+    left: 16px;
+    line-height: 80px;
+    position: absolute;
+    text-align: center;
+    width: 200px;
+}
+
+.info.blue {
+    color: #09f;
+    top: 16px;
+}
+
+.info.red {
+    color: #f00;
+    top: 112px;
 }
