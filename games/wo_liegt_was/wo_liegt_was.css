@@ -15,6 +15,63 @@
 
 #game {
     display: none;
+    height: 100%;
+    text-shadow: 1px 1px 3px #93b837;
+}
+
+#question {
+    background: #d2ff5b;
+    border-radius: 16px;
+    box-shadow: 0 0 6px 2px #93b837;
+    height: 25%;
+}
+
+#info {
+    color: #51761f;
+    font-style: italic;
+    height: 6%;
+    margin-top: 1%;
+}
+
+.player {
+    background: #a4c62d;
+    border: 2px solid #51761f;
+    border-radius: 16px;
+    box-shadow: 0 0 6px 2px #93b837;
+    margin-top: 3%;
+    height: 58%;
+    width: 30%;
+}
+
+.player div {
+    color: #000;
+    display: none;
+}
+
+.player.blue {
+    color: #09f;
+    float: left;
+}
+
+.player.red {
+    color: #f00;
+    float: right;
+} 
+
+#continue {
+    background: #000;
+    border: 2px solid #fff;
+    border-radius: 16px;
+    bottom: 20%;
+    box-shadow: 0 0 6px 2px #93b837;
+    color: #fff;
+    display: none;
+    height: 8%;
+    left: 35%;
+    position: absolute;
+    right: 35%;
+    text-decoration: none;
+    text-shadow: none;
 }
 
 #map {
@@ -24,18 +81,6 @@
     height: 90%;
     overflow: hidden;
     width: 100%;
-}
-
-#map.audience {
-    height: 100%;
-}
-
-.player div {
-    display: none;
-}
-
-#solve {
-    display: none;
 }
 
 .info {

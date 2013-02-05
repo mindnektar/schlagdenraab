@@ -1,8 +1,10 @@
 $(function() {
     var $start = $('#start'),
         $game = $('#game'),
-        $players = $('.player div'),
+        $players = $('.player'),
+        $playersReady = $('div', $players),
         $question = $('#question'),
+        $info = $('#info'),
         $continue = $('#continue'),
 
         quiz = [
@@ -103,22 +105,49 @@ $(function() {
         currentQuiz = quiz[parseInt(Math.random() * quiz.length)];
 
         $question.text(currentQuiz.question);
+        $info.text(currentQuiz.info);
         $continue.text('Auflösen').hide();
-        $players.hide();
+        $playersReady.hide();
 
         guesses = [];
 
         ws.send('start');
 
         $game.fadeIn(1000);
+        
+        setTimeout(adjustFontSize, 50);
     }
 
     function adjustFontSize() {
-        var startHeight = $start.height();
+        var startHeight = $start.height(),
+            questionHeight = $question.height() / 2,
+            playerHeight = $players.height() / 4,
+            infoHeight = $info.height(),
+            continueHeight = $continue.height();
 
         $start.css({
             fontSize: startHeight - 16,
             lineHeight: startHeight + 'px'
+        });
+        
+        $question.css({
+            fontSize: questionHeight - 16,
+            lineHeight: questionHeight + 'px'
+        });
+        
+        $players.css({
+            fontSize: playerHeight - 16,
+            lineHeight: playerHeight + 'px'
+        });
+        
+        $info.css({
+            fontSize: infoHeight - 16,
+            lineHeight: infoHeight + 'px'
+        });
+        
+        $continue.css({
+            fontSize: continueHeight - 16,
+            lineHeight: continueHeight + 'px'
         });
     }
 });

@@ -54,7 +54,7 @@ $(function() {
         var position = positions.splice(0, 1)[0],
             markerOpts = {
                 clickable: false,
-                icon: position.who + '.png',
+                icon: 'img/' + position.who + '.png',
                 map: map
             };
 

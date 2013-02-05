@@ -20,6 +20,7 @@ header('Content-Type: text/html; charset=utf-8');
 
     <div id="game">
         <div id="question"></div>
+        <div id="info"></div>
         <div class="player blue">Blau<div>Bereit!</div></div>
         <div class="player red">Rot<div>Bereit!</div></div>
         <a href="javascript:" id="continue"></a>

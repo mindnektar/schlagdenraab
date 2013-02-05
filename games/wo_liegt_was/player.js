@@ -24,7 +24,7 @@ $(function() {
             },
             markerOpts = {
                 clickable: false,
-                icon: color + '.png',
+                icon: 'img/' + color + '.png',
                 position: startPos
             };
         
