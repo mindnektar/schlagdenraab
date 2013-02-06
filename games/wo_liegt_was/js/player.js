@@ -32,10 +32,13 @@ $(function() {
         marker = new google.maps.Marker(markerOpts);
         marker.setMap(map);
 
-        ws = $.websocket("ws://127.0.0.1:8080/" + color, {
+        ws = $.websocket('ws://' + location.host + ':8080/' + color, {
             events: {
                 start: function() {
                     $submit.attr('disabled', false);
+                },
+                stop: function() {
+                    $submit.attr('disabled', true);
                 }
             }
         });

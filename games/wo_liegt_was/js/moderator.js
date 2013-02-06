@@ -5,6 +5,7 @@ $(function() {
         $playersReady = $('div', $players),
         $question = $('#question'),
         $info = $('#info'),
+        $time = $('#time'),
         $continue = $('#continue'),
 
         quiz = [
@@ -47,10 +48,12 @@ $(function() {
 
         currentQuiz,
         guesses = [],
-        ws;
+        ws,
+        time,
+        stopTime;
     
     (function init() {
-        ws = $.websocket("ws://127.0.0.1:8080/moderator", {
+        ws = $.websocket('ws://' + location.host + ':8080/moderator', {
             events: {
                 playerInput: playerInput,
                 readyForNext: readyForNext
@@ -75,6 +78,7 @@ $(function() {
         $('.player.' + e.data.player + ' div').show();
 
         if (guesses.length === 2) {
+            stopTime = true;
             $continue.show();
         }
     }
@@ -116,11 +120,40 @@ $(function() {
         $game.fadeIn(1000);
         
         setTimeout(adjustFontSize, 50);
+
+        stopTime = false;
+        time = 60;
+        displayTime();
+    }
+
+    function displayTime() {
+        var minutes = Math.floor(time / 60) + '',
+            seconds = (time % 60) + '';
+
+        while (minutes.length < 2) {
+            minutes = '0' + minutes;
+        }
+
+        while (seconds.length < 2) {
+            seconds = '0' + seconds;
+        }
+
+        $time.text(minutes + ':' + seconds);
+
+        if (time === 0 || stopTime) {
+            ws.send('stop');
+
+            $continue.show();
+        } else {
+            time--;
+
+            setTimeout(displayTime, 1000);
+        }
     }
 
     function adjustFontSize() {
         var startHeight = $start.height(),
-            questionHeight = $question.height() / 2,
+            questionHeight = $question.height() / 3,
             playerHeight = $players.height() / 4,
             infoHeight = $info.height(),
             continueHeight = $continue.height();
@@ -131,8 +164,8 @@ $(function() {
         });
         
         $question.css({
-            fontSize: questionHeight - 16,
-            lineHeight: questionHeight + 'px'
+            fontSize: questionHeight - 28,
+            lineHeight: (questionHeight - 12) + 'px'
         });
         
         $players.css({

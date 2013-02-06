@@ -25,7 +25,7 @@ $(function() {
         
         map = new google.maps.Map($map[0], mapOpts);
 
-        ws = $.websocket("ws://127.0.0.1:8080/audience", {
+        ws = $.websocket('ws://' + location.host + ':8080/audience', {
             events: {
                 solve: solve,
                 start: start
@@ -46,6 +46,9 @@ $(function() {
         $.each(polylines, function(i) {
             polylines[i].setMap(null);
         });
+
+        markers = {};
+        polylines = {};
 
         $blue.add($red).hide();
     }
@@ -72,20 +75,25 @@ $(function() {
         var polylineOpts = {
                 clickable: false,
                 map: map
-            },
-            distanceBlue = parseInt(google.maps.geometry.spherical.computeDistanceBetween(markers.blue.getPosition(), markers.solution.getPosition()) / 1000),
-            distanceRed = parseInt(google.maps.geometry.spherical.computeDistanceBetween(markers.red.getPosition(), markers.solution.getPosition()) / 1000);
+            };
 
-        polylines.blue = new google.maps.Polyline($.extend({strokeColor: '#09f'}, polylineOpts));
-        polylines.blue.setPath([markers.blue.getPosition(), markers.solution.getPosition()]);
+        if (markers.blue) {
+            showDistance('blue', '09f');
+        }
 
-
-        polylines.red = new google.maps.Polyline($.extend({strokeColor: '#f00'}, polylineOpts));
-        polylines.red.setPath([markers.red.getPosition(), markers.solution.getPosition()]);
-
-        $blue.text(distanceBlue + ' km').show();
-        $red.text(distanceRed + ' km').show();
+        if (markers.red) {
+            showDistance('red', 'f00');
+        }
 
         ws.send('readyForNext');
+
+        function showDistance(player, color) {
+            var distance = Math.floor(google.maps.geometry.spherical.computeDistanceBetween(markers[player].getPosition(), markers.solution.getPosition()) / 1000);
+
+            polylines[player] = new google.maps.Polyline($.extend({strokeColor: color}, polylineOpts));
+            polylines[player].setPath([markers[player].getPosition(), markers.solution.getPosition()]);
+
+            $('.info.' + player).text(distance + ' km').show();
+        }
     }
 });
