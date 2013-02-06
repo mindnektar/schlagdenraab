@@ -7,9 +7,9 @@
 
 #start {
     height: 40%;
-    left: 25%;
+    left: 15%;
     position: absolute;
-    right: 25%;
+    right: 15%;
     top: 30%;
 }
 
@@ -32,6 +32,11 @@
     font-style: italic;
     height: 6%;
     margin-top: 1%;
+}
+
+#time {
+    height: 10%;
+    margin-top: 3%;
 }
 
 .player {
