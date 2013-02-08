@@ -15,7 +15,7 @@ header('Content-Type: text/html; charset=utf-8');
 <body>
 
 <div id="flaggen" class="wrapper">
-    <a href="javascript:" id="start">Start</a>
+    <a href="javascript:" id="start" class="button">Start</a>
     <a href="javascript:" id="flag"></a>
 </div>
 

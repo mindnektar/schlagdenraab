@@ -113,11 +113,10 @@ $(function() {
         stopTime;
     
     (function init() {
-        ws = $.websocket('ws://' + location.host + ':8080/moderator', {
-            events: {
-                playerInput: playerInput,
-                readyForNext: readyForNext
-            }
+        ws = $.socketio('moderator', {
+            connected: connected,
+            playerInput: playerInput,
+            readyForNext: readyForNext
         });
 
         adjustFontSize();
@@ -127,15 +126,19 @@ $(function() {
 
         $(window).resize(adjustFontSize);
     })();
+
+    function connected() {
+        $start.removeClass('disabled');
+    }
     
-    function playerInput(e) {
+    function playerInput(data) {
         guesses.push({
-            who: e.data.player,
-            lat: e.data.lat,
-            lng: e.data.lng
+            who: data.who,
+            lat: data.lat,
+            lng: data.lng
         });
         
-        $('.player.' + e.data.player + ' div').show();
+        $('.player.' + data.who + ' div').show();
 
         if (guesses.length === 2) {
             stopTime = true;
@@ -150,6 +153,10 @@ $(function() {
     }
 
     function _startClick() {
+        if ($start.hasClass('disabled')) {
+            return;
+        }
+
         $start.fadeOut(1000, pickQuiz);
     }
     
@@ -159,7 +166,7 @@ $(function() {
 
             $continue.hide();
 
-            ws.send('solve', {positions: guesses});
+            ws.emit('solve', {positions: guesses});
         } else {
             $game.fadeOut(1000, pickQuiz);
         }
@@ -179,7 +186,7 @@ $(function() {
 
         guesses = [];
 
-        ws.send('start');
+        ws.emit('start');
 
         $game.fadeIn(1000);
         
@@ -205,7 +212,7 @@ $(function() {
         $time.text(minutes + ':' + seconds);
 
         if (time === 0 || stopTime) {
-            ws.send('stop');
+            ws.emit('stop', {type: 'stop'});
 
             $continue.show();
         } else {

@@ -25,16 +25,14 @@ $(function() {
         
         map = new google.maps.Map($map[0], mapOpts);
 
-        ws = $.websocket('ws://' + location.host + ':8080/audience', {
-            events: {
-                solve: solve,
-                start: start
-            }
+        ws = $.socketio('audience', {
+            solve: solve,
+            start: start
         });
     })();
     
-    function solve(e) {
-        positions = e.data.positions;
+    function solve(data) {
+        positions = data.positions;
 
         interval = setInterval(placeMarker, 2000);
     }
@@ -85,7 +83,7 @@ $(function() {
             showDistance('red', 'f00');
         }
 
-        ws.send('readyForNext');
+        ws.emit('readyForNext');
 
         function showDistance(player, color) {
             var distance = Math.floor(google.maps.geometry.spherical.computeDistanceBetween(markers[player].getPosition(), markers.solution.getPosition()) / 1000);

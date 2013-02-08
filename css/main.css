@@ -44,7 +44,7 @@ body {
     margin: 0 0 24px 0;
 }
 
-#start {
+.button {
     background: #000;
     border: 2px solid #fff;
     border-radius: 16px;
@@ -54,4 +54,11 @@ body {
     height: 100%;
     outline: none;
     text-decoration: none;
+    text-shadow: none;
+}
+
+.button.disabled {
+    border-color: #444;
+    color: #444;
+    cursor: default;
 }

@@ -1,23 +1,26 @@
-var WebSocketServer = require('./node_modules/ws').Server,
-    wss = new WebSocketServer({host: '127.0.0.1', port: 8080}),
-    cons = [];
- 
-wss.on('connection', function(ws) {
+var io = require('socket.io').listen(8080),
+    cons = {};
 
-    cons.push(ws);
-
-    ws.on('message', function(msg) {
-        var toSend = JSON.parse(msg);
-
-        if (!toSend.data) {
-            toSend.data = {};
+io.sockets.on('connection', function (socket) {
+    socket.on('reg', function(who) {
+        if (cons[who]) {
+            socket.disconnect();
+            return;
         }
-        
-        toSend.data.player = ws.upgradeReq.url.substring(1);
-        toSend = JSON.stringify(toSend);
 
-        for (var i = 0; i < cons.length; i++) {
-            cons[i].send(toSend);
+        socket.who = who;
+        cons[who] = socket;
+
+        if (cons.moderator && cons.audience && cons.blue && cons.red) {
+            cons.moderator.emit('msg', {type: 'connected'})
         }
+    });
+
+    socket.on('msg', function(data) {
+        socket.broadcast.emit('msg', data);
+    });
+
+    socket.on('disconnect', function() {
+        delete cons[socket.who];
     });
 });

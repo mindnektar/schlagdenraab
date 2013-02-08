@@ -8,15 +8,15 @@ header('Content-Type: text/html; charset=utf-8');
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="../../css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/wo_liegt_was.css" />
+    <script type="text/javascript" src="js/node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
     <script type="text/javascript" src="../../js/jquery.js"></script>
-    <script type="text/javascript" src="js/jquery.json-2.4.min.js"></script>
-    <script type="text/javascript" src="js/jquery.websocket-0.0.1.js"></script>
+    <script type="text/javascript" src="js/jquery.socketio.js"></script>
     <script type="text/javascript" src="js/moderator.js"></script>
 </head>
 <body>
 
 <div class="wrapper">
-    <a href="javascript:" id="start">Start</a>
+    <a href="javascript:" id="start" class="button disabled">Start</a>
 
     <div id="game">
         <div id="question"><span></span></div>
@@ -24,7 +24,7 @@ header('Content-Type: text/html; charset=utf-8');
         <div class="player blue">Blau<div>Bereit!</div></div>
         <div class="player red">Rot<div>Bereit!</div></div>
         <div id="time"></div>
-        <a href="javascript:" id="continue"></a>
+        <a href="javascript:" id="continue" class="button"></a>
     </div>
 </div>
 

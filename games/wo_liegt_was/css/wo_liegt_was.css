@@ -64,20 +64,23 @@
     float: right;
 } 
 
+#continue, #submit {
+    position: absolute;
+}
+
 #continue {
-    background: #000;
-    border: 2px solid #fff;
-    border-radius: 16px;
     bottom: 20%;
-    box-shadow: 0 0 6px 2px #93b837;
-    color: #fff;
     display: none;
     height: 8%;
     left: 35%;
-    position: absolute;
     right: 35%;
-    text-decoration: none;
-    text-shadow: none;
+}
+
+#submit {
+    height: 7%;
+    bottom: 0;
+    left: 40%;
+    right: 40%;
 }
 
 #map {

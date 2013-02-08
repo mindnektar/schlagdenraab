@@ -14,7 +14,7 @@ header('Content-Type: text/html; charset=utf-8');
 <body>
 
 <div class="wrapper">
-    <a href="javascript:" id="start">Start</a>
+    <a href="javascript:" id="start" class="button">Start</a>
     
     <div id="letters">
         <div id="cat"></div>

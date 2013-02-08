@@ -5,7 +5,7 @@ $(function() {
         map,
         marker,
         ws,
-        color = location.href.split('?')[1];
+        who = location.href.split('?')[1];
     
     (function init() {
         var startPos = new google.maps.LatLng(30, 0),
@@ -24,7 +24,7 @@ $(function() {
             },
             markerOpts = {
                 clickable: false,
-                icon: 'img/' + color + '.png',
+                icon: 'img/' + who + '.png',
                 position: startPos
             };
         
@@ -32,20 +32,24 @@ $(function() {
         marker = new google.maps.Marker(markerOpts);
         marker.setMap(map);
 
-        ws = $.websocket('ws://' + location.host + ':8080/' + color, {
-            events: {
-                start: function() {
-                    $submit.attr('disabled', false);
-                },
-                stop: function() {
-                    $submit.attr('disabled', true);
-                }
-            }
+        adjustFontSize();
+
+        ws = $.socketio(who, {
+            start: start,
+            stop: stop
         });
-        
+
         google.maps.event.addListener(map, 'click', _mapClick);
         $submit.click(_submitClick);
     })();
+
+    function start() {
+        $submit.removeClass('disabled');
+    }
+
+    function stop() {
+        $submit.addClass('disabled');
+    }
     
     function _mapClick(e) {
         marker.setPosition(e.latLng);
@@ -53,9 +57,22 @@ $(function() {
     
     function _submitClick() {
         var latLng = marker.getPosition();
+
+        if ($submit.hasClass('disabled')) {
+            return;
+        }
         
-        ws.send('playerInput', {lat: latLng.lat(), lng: latLng.lng()});
+        ws.emit('playerInput', {lat: latLng.lat(), lng: latLng.lng()});
         
-        $submit.attr('disabled', true);
+        $submit.addClass('disabled');
+    }
+
+    function adjustFontSize() {
+        var submitHeight = $submit.height();
+
+        $submit.css({
+            fontSize: submitHeight - 16,
+            lineHeight: submitHeight + 'px'
+        });
     }
 });
