@@ -44,14 +44,16 @@
     border: 2px solid #51761f;
     border-radius: 16px;
     box-shadow: 0 0 6px 2px #93b837;
-    margin-top: 3%;
     height: 58%;
+    margin-top: 3%;
+    text-shadow: 2px 2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #FFF, -2px -2px 0 #fff;
     width: 30%;
 }
 
 .player div {
     color: #000;
     display: none;
+    text-shadow: none;
 }
 
 .player.blue {
@@ -90,6 +92,10 @@
     height: 90%;
     overflow: hidden;
     width: 100%;
+}
+
+#map.audience {
+    height: 80%;
 }
 
 .info {

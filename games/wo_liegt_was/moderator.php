@@ -12,6 +12,7 @@ header('Content-Type: text/html; charset=utf-8');
     <script type="text/javascript" src="../../js/jquery.js"></script>
     <script type="text/javascript" src="js/jquery.socketio.js"></script>
     <script type="text/javascript" src="js/moderator.js"></script>
+    <script type="text/javascript" src="js/quiz.js"></script>
 </head>
 <body>
 

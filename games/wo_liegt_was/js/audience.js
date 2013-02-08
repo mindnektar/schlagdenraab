@@ -2,10 +2,13 @@ $(function() {
     var $map = $('#map'),
         $blue = $('.info.blue'),
         $red = $('.info.red'),
+        $score = $('.score'),
         
         map,
         markers = {},
         polylines = {},
+        distances = {},
+        score = {blue: 0, red: 0},
         positions,
         ws,
         interval;
@@ -32,9 +35,19 @@ $(function() {
     })();
     
     function solve(data) {
+        var bounds = new google.maps.LatLngBounds();
+
         positions = data.positions;
 
-        interval = setInterval(placeMarker, 2000);
+        $.each(positions, function(_, latLng) {
+            bounds.extend(new google.maps.LatLng(latLng.lat, latLng.lng));
+        });
+
+        map.fitBounds(bounds);
+
+        google.maps.event.addListenerOnce(map, 'idle', function() {
+            interval = setInterval(placeMarker, 2000);
+        });
     }
 
     function start() {
@@ -47,6 +60,7 @@ $(function() {
 
         markers = {};
         polylines = {};
+        distances = {};
 
         $blue.add($red).hide();
     }
@@ -83,15 +97,33 @@ $(function() {
             showDistance('red', 'f00');
         }
 
-        ws.emit('readyForNext');
+        setTimeout(adjustScore, 2000);
 
         function showDistance(player, color) {
-            var distance = Math.floor(google.maps.geometry.spherical.computeDistanceBetween(markers[player].getPosition(), markers.solution.getPosition()) / 1000);
+            distances[player] = Math.floor(google.maps.geometry.spherical.computeDistanceBetween(markers[player].getPosition(), markers.solution.getPosition()) / 1000);
 
             polylines[player] = new google.maps.Polyline($.extend({strokeColor: color}, polylineOpts));
             polylines[player].setPath([markers[player].getPosition(), markers.solution.getPosition()]);
 
-            $('.info.' + player).text(distance + ' km').show();
+            $('.info.' + player).text(distances[player] + ' km').show();
         }
+    }
+
+    function adjustScore() {
+        var who;
+
+        if ((distances.blue && !distances.red) || (distances.blue < distances.red)) {
+            who = 'blue';
+        } else if ((distances.red && !distances.blue) || (distances.red > distances.blue)) {
+            who = 'red';
+        } else {
+            return;
+        }
+
+        score[who]++;
+
+        $('.' + who + ' .point', $score).eq(score[who]).show();
+
+        ws.emit('readyForNext');
     }
 });

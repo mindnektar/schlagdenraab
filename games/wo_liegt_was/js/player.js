@@ -41,6 +41,8 @@ $(function() {
 
         google.maps.event.addListener(map, 'click', _mapClick);
         $submit.click(_submitClick);
+
+        $(window).resize(adjustFontSize);
     })();
 
     function start() {
