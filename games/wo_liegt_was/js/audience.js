@@ -51,18 +51,20 @@ $(function() {
     }
 
     function start() {
-        $.each(markers, function(i) {
-            markers[i].setMap(null);
+        $.each(markers, function(i, marker) {
+            marker.setMap(null);
         });
-        $.each(polylines, function(i) {
-            polylines[i].setMap(null);
+        
+        $.each(polylines, function(i, polyline) {
+            polyline.setMap(null);
         });
 
         markers = {};
         polylines = {};
         distances = {};
 
-        $blue.add($red).hide();
+        $blue.hide();
+        $red.hide();
     }
 
     function placeMarker() {
@@ -112,18 +114,18 @@ $(function() {
     function adjustScore() {
         var who;
 
+        ws.emit('readyForNext');
+
         if ((distances.blue && !distances.red) || (distances.blue < distances.red)) {
             who = 'blue';
-        } else if ((distances.red && !distances.blue) || (distances.red > distances.blue)) {
+        } else if ((distances.red && !distances.blue) || (distances.red < distances.blue)) {
             who = 'red';
         } else {
             return;
         }
 
+        $score.filter('.' + who).find('li').eq(score[who]).addClass('show');
+        
         score[who]++;
-
-        $('.' + who + ' .point', $score).eq(score[who]).show();
-
-        ws.emit('readyForNext');
     }
 });

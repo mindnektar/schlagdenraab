@@ -95,7 +95,10 @@
 }
 
 #map.audience {
-    height: 80%;
+    bottom: 90px;
+    height: auto;
+    position: absolute;
+    top: 0;
 }
 
 .info {

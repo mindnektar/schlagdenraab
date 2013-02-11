@@ -1,0 +1,95 @@
+.score {
+    background: #ebebeb;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #fff;
+    border-bottom: 1px solid #eee;
+    border-right: 1px solid #eee;
+    padding: 5px;
+    position: absolute;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    bottom: 0;
+}
+
+.red {
+    right: 0;
+}
+
+.blue {
+    left: 0;
+}
+
+.counter-inner {
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.2) inset;
+    background-image: -webkit-linear-gradient(#ffcc66 0%, #ff9933 100%); 
+    height: 100%;
+}
+
+.gutter {
+    overflow: hidden;
+}
+
+.name {
+    padding: 10px 10px 10px 20px;
+    font-size: 24px;
+    line-height: 42px;
+    font-weight: bolder;
+    text-shadow: 2px 2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #FFF, -2px -2px 0 #fff, 0 0 10px #000;
+    width: 100px;
+}
+
+
+.red .name {
+    color: #f00;
+    float: right;
+    padding: 10px 10px 10px 0;
+}
+
+.blue .name { 
+    color: #09f;
+    float: left;
+    padding: 10px 0 10px 10px;
+}
+
+.counts {
+    float: right;
+}
+
+.counts ul {
+    display: block;
+    overflow: hidden;
+    list-style: none;
+    padding: 0 13px 0 18px;
+}
+
+.counts ul li {
+    display: block;
+    padding: 7px;
+    background: #333;
+    border-radius: 2px;
+    margin-right: 5px;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.2) inset;
+}
+
+.blue .counts ul li {
+    float: left;
+}
+
+.red .counts ul li {
+    float: right;
+}
+
+.counts ul li span {
+    display: block;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #000;
+    border-radius: 14px;
+    background: #00cc00;
+    opacity: 0;
+}
+
+.counts ul li.show span {
+    opacity: 1.0;
+}
