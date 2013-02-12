@@ -18,7 +18,8 @@ $(function() {
         ws = $.socketio('moderator', {
             connected: connected,
             playerInput: playerInput,
-            readyForNext: readyForNext
+            readyForNext: readyForNext,
+            gameOver: gameOver
         });
 
         adjustFontSize();
@@ -52,6 +53,11 @@ $(function() {
         currentQuiz = null;
 
         $continue.text('Nächste Frage').show();
+    }
+    
+    function gameOver(data) {
+        $playersReady.hide();
+        $('.player.' + data.winner + ' div').text('gewinnt!').show();
     }
 
     function _startClick() {

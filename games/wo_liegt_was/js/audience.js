@@ -2,16 +2,17 @@ $(function() {
     var $map = $('#map'),
         $blue = $('.info.blue'),
         $red = $('.info.red'),
-        $score = $('.score'),
+        $scoreboard = $('#scoreboard'),
         
         map,
         markers = {},
         polylines = {},
         distances = {},
-        score = {blue: 0, red: 0},
         positions,
         ws,
-        interval;
+        interval,
+        scoreboard,
+        winner;
     
     (function init() {
         var startPos = new google.maps.LatLng(30, 0),
@@ -27,6 +28,10 @@ $(function() {
             };
         
         map = new google.maps.Map($map[0], mapOpts);
+        
+        scoreboard = $.scoreboard($scoreboard, {
+            gameOver: gameOver
+        })
 
         ws = $.socketio('audience', {
             solve: solve,
@@ -65,6 +70,11 @@ $(function() {
 
         $blue.hide();
         $red.hide();
+    }
+    
+    function gameOver(who) {
+        winner = who;
+        ws.emit('gameOver', {winner: winner});
     }
 
     function placeMarker() {
@@ -114,18 +124,19 @@ $(function() {
     function adjustScore() {
         var who;
 
-        ws.emit('readyForNext');
-
         if ((distances.blue && !distances.red) || (distances.blue < distances.red)) {
             who = 'blue';
         } else if ((distances.red && !distances.blue) || (distances.red < distances.blue)) {
             who = 'red';
         } else {
+            ws.emit('readyForNext');
             return;
         }
 
-        $score.filter('.' + who).find('li').eq(score[who]).addClass('show');
+        scoreboard.addPoints(who);
         
-        score[who]++;
+        if (!winner) {
+            ws.emit('readyForNext');
+        }
     }
 });

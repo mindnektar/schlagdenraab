@@ -124,3 +124,9 @@
     color: #f00;
     top: 112px;
 }
+
+#scoreboard {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+}
