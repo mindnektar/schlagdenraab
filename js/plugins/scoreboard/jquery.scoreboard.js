@@ -11,12 +11,10 @@ $(function() {
         tpl = {
             wrapper: '\
                 <div class="score {who}">\
-                    <div class="counter-inner">\
-                        <div class="gutter">\
-                            <div class="name">{name}</div>\
-                            <div class="counts">\
-                                {type}\
-                            </div>\
+                    <div class="gutter">\
+                        <div class="name">{name}</div>\
+                        <div class="points">\
+                            {type}\
                         </div>\
                     </div>\
                 </div>\

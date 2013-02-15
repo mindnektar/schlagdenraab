@@ -1,98 +1,89 @@
 .score {
-    background: #ebebeb;
-    overflow: hidden;
+    border: 6px solid #ebebeb;
     border-radius: 8px;
-    border: 1px solid #fff;
-    border-bottom: 1px solid #eee;
-    border-right: 1px solid #eee;
-    padding: 5px;
-    position: absolute;
     bottom: 0;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    overflow: hidden;
+    position: absolute;
 }
 
-.red {
+.score.red {
     right: 0;
 }
 
-.blue {
+.score.blue {
     left: 0;
 }
 
-.counter-inner {
-    border-radius: 3px;
+.score .gutter {
+    background-image: -webkit-linear-gradient(#ffcc66 0%, #ff9933 100%);
     box-shadow: 3px 3px 5px rgba(0,0,0,0.2) inset;
-    background-image: -webkit-linear-gradient(#ffcc66 0%, #ff9933 100%); 
     height: 100%;
-}
-
-.gutter {
     overflow: hidden;
 }
 
-.name {
-    padding: 10px 10px 10px 20px;
+.score .name {
     font-size: 24px;
+    font-weight: bold;
     line-height: 42px;
-    font-weight: bolder;
+    padding: 10px 10px 10px 20px;
     text-shadow: 2px 2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #FFF, -2px -2px 0 #fff, 0 0 10px #000;
     width: 100px;
 }
 
-
-.red .name {
+.score.red .name {
     color: #f00;
     float: right;
     padding: 10px 10px 10px 0;
 }
 
-.blue .name { 
+.score.blue .name {
     color: #09f;
     float: left;
     padding: 10px 0 10px 10px;
 }
 
-.counts {
-    float: right;
-}
-
-.counts ul {
-    display: block;
-    overflow: hidden;
-    list-style: none;
-    padding: 0 13px 0 18px;
-}
-
-.counts ul li {
-    display: block;
-    padding: 5px;
-    background: url('img/cellbg.png');
-    border-radius: 2px;
-    margin-right: 5px;
-    box-shadow: 3px 3px 5px rgba(0,0,0,0.2) inset;
-}
-
-.blue .counts ul li {
+.score .points {
     float: left;
 }
 
-.red .counts ul li {
+.score .points ul {
+    display: block;
+    list-style: none;
+    overflow: hidden;
+    padding: 0 13px 0 18px;
+}
+
+.score .points ul li {
+    background: url('img/cellbg.png');
+    border-radius: 2px;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.2) inset;
+    display: block;
+    margin-right: 5px;
+    padding: 5px;
+}
+
+.score.blue .points ul li {
+    float: left;
+}
+
+.score.red .points ul li {
     float: right;
 }
 
-.counts ul li span {
-    display: block;
+.score .points ul li span {
+    background-image: -webkit-linear-gradient(#70b31b 0%, #4b7513 100%);
+    border-bottom: 3px solid #4b7513;
+    border-left: 2px solid #629c18;
     border-radius: 14px;
-    opacity: 0;
-    background-image: -webkit-linear-gradient(rgb(112, 179, 27) 0%, rgb(75, 117, 19) 100%);
-    width: 15px;
+    border-right: 2px solid #4f7e12;
+    border-top: 1px solid #8ee420;
+    display: block;
     height: 15px;
-    border-left: 2px solid rgb(98, 156, 24);
-    border-top: 1px solid rgb(142, 228, 32);
-    border-bottom: 3px solid rgb(75, 117, 19);
-    border-right: 2px solid rgb(79, 126, 18);
+    opacity: 0;
+    width: 15px;
 }
 
-.counts ul li.show span {
+.score .points ul li.show span {
     opacity: 1.0;
 }
