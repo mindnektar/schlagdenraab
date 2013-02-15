@@ -17,7 +17,10 @@ header('Content-Type: text/html; charset=utf-8');
 <body>
 
 <div class="wrapper">
-    <div id="map"></div>
+    <div id="mapwrap">
+        <div id="map"></div>
+    </div>
+
     <a href="javascript:" id="submit" class="button disabled">Abschicken</a>
 </div>
 

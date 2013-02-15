@@ -38,7 +38,8 @@ $(function() {
 
         ws = $.socketio('audience', {
             solve: solve,
-            start: start
+            start: start,
+            stop: stop
         });
     })();
     
@@ -54,6 +55,10 @@ $(function() {
         map.fitBounds(bounds);
 
         google.maps.event.addListenerOnce(map, 'idle', function() {
+            if (map.getZoom() > 5) {
+                map.setZoom(5);
+            }
+
             interval = setInterval(placeMarker, 2000);
         });
     }
@@ -77,6 +82,10 @@ $(function() {
         stopTime = false;
         time = 60;
         displayTime();
+    }
+
+    function stop() {
+        stopTime = true;
     }
     
     function gameOver(who) {

@@ -32,8 +32,6 @@ $(function() {
         marker = new google.maps.Marker(markerOpts);
         marker.setMap(map);
 
-        adjustFontSize();
-
         ws = $.socketio(who, {
             start: start,
             stop: stop
@@ -41,8 +39,6 @@ $(function() {
 
         google.maps.event.addListener(map, 'click', _mapClick);
         $submit.click(_submitClick);
-
-        $(window).resize(adjustFontSize);
     })();
 
     function start() {
@@ -67,14 +63,5 @@ $(function() {
         ws.emit('playerInput', {lat: latLng.lat(), lng: latLng.lng()});
         
         $submit.addClass('disabled');
-    }
-
-    function adjustFontSize() {
-        var submitHeight = $submit.height();
-
-        $submit.css({
-            fontSize: submitHeight - 16,
-            lineHeight: submitHeight + 'px'
-        });
     }
 });

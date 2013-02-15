@@ -154,7 +154,7 @@ $(function() {
         
         $.post(
             'xhr/manual.php',
-            {game: 'carrom'},
+            {game: game},
             function(html) {
                 manual = html;
             }

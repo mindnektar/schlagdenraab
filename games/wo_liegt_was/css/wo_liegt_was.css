@@ -16,19 +16,20 @@
 #game {
     display: none;
     height: 100%;
-    text-shadow: 1px 1px 3px #93b837;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 #question {
-    background: #d2ff5b;
+    background: rgba(255,255,255,0.2);
+    border: 6px solid #8a8f97;
     border-radius: 16px;
-    box-shadow: 0 0 6px 2px #93b837;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5), 3px 3px 5px rgba(0,0,0,0.2) inset;
     height: 25%;
     padding: 6px;
 }
 
 #info {
-    color: #51761f;
+    color: #8a8f97;
     font-style: italic;
     height: 6%;
     margin-top: 1%;
@@ -39,34 +40,35 @@
     font-size: 52px;
     margin-top: 3%;
     position: absolute;
+    text-shadow: 2px 2px 0 #ebebeb, 2px -2px 0 #ebebeb, -2px 2px 0 #ebebeb, -2px -2px 0 #ebebeb;
     width: 100%;
 }
 
 .player {
-    background: #a4c62d;
-    border: 2px solid #51761f;
+    background: rgba(0,0,0,0.3);
+    border: 6px solid #4e535c;
     border-radius: 16px;
-    box-shadow: 0 0 6px 2px #93b837;
+    bottom: 0;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5), 3px 3px 5px rgba(0,0,0,0.2) inset;
     height: 58%;
-    margin-top: 3%;
-    text-shadow: 2px 2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #FFF, -2px -2px 0 #fff;
+    position: absolute;
+    text-shadow: 2px 2px 0 #ebebeb, 2px -2px 0 #ebebeb, -2px 2px 0 #ebebeb, -2px -2px 0 #ebebeb, 0 0 10px rgba(0,0,0,0.8);
     width: 30%;
 }
 
 .player div {
     color: #000;
     display: none;
-    text-shadow: none;
 }
 
 .player.blue {
     color: #09f;
-    float: left;
+    left: 0;
 }
 
 .player.red {
     color: #f00;
-    float: right;
+    right: 0;
 } 
 
 #continue, #submit {
@@ -75,33 +77,34 @@
 
 #continue {
     bottom: 20%;
-    display: none;
-    height: 8%;
     left: 35%;
     right: 35%;
 }
 
 #submit {
-    height: 7%;
     bottom: 0;
     left: 40%;
     right: 40%;
 }
 
-#map {
-    border: 2px solid #fff;
-    border-radius: 16px;
-    box-shadow: 0 0 6px 2px #93b837;
-    height: 90%;
+#mapwrap {
+    background: #ebebeb;
+    border: 1px solid white;
+    border-radius: 8px;
+    bottom: 90px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    left: 0;
     overflow: hidden;
-    width: 100%;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
-#map.audience {
-    bottom: 90px;
-    height: auto;
-    position: absolute;
-    top: 0;
+#map {
+    border-radius: 3px;
+    height: 100%;
+    overflow: hidden;
 }
 
 .info {

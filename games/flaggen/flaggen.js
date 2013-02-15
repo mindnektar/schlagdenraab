@@ -235,7 +235,7 @@ $(function() {
             solved = false;
 
             $flag.add($solution).fadeOut(delay).promise().done(function() {
-                $solution.css({right: '-100%'}).show();
+                $solution.css({left: '100%'}).show();
 
                 pickFlag();
             });
@@ -243,7 +243,7 @@ $(function() {
             solved = true;
 
             $solution.animate({
-                right: 0
+                left: 0
             }, {
                 duration: delay / 2,
                 complete: function() {
@@ -282,7 +282,5 @@ $(function() {
             fontSize: startHeight - 16,
             lineHeight: startHeight + 'px'
         });
-
-        $solution.css({fontSize: $solution.height() - 22});
     }
 });

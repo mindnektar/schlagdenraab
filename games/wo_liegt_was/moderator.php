@@ -21,10 +21,13 @@ header('Content-Type: text/html; charset=utf-8');
 
     <div id="game">
         <div id="question"><span></span></div>
+
         <div id="info"></div>
+
         <div class="player blue">Blau<div>ist bereit!</div></div>
         <div class="player red">Rot<div>ist bereit!</div></div>
-        <a href="javascript:" id="continue" class="button"></a>
+
+        <a href="javascript:" id="continue" class="button disabled"></a>
     </div>
 </div>
 

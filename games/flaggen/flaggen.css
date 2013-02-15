@@ -7,7 +7,6 @@
 
 #flag {
     background-size: 100% 100%;
-    box-shadow: 0 0 6px 2px #93b837; 
     display: none;
     height: 100%;
     left: 30%;
@@ -18,9 +17,14 @@
 
 #solution {
     bottom: 10%;
+    font-size: 86px;
     height: 16%;
     position: absolute;
-    right: -100%;
+    left: 100%;
     text-align: center;
     width: 100%;
+}
+
+.button {
+    height: 100%;
 }

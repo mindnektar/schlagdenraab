@@ -42,18 +42,19 @@ $(function() {
         $('.player.' + data.who + ' div').show();
 
         if (guesses.length === 2) {
+            ws.emit('stop');
             stop();
         }
     }
 
     function stop() {
-        $continue.show();
+        $continue.removeClass('disabled');
     }
 
     function readyForNext() {
         currentQuiz = null;
 
-        $continue.text('Nächste Frage').show();
+        $continue.text('Nächste Frage').removeClass('disabled');
     }
     
     function gameOver(data) {
@@ -73,7 +74,7 @@ $(function() {
         if (currentQuiz) {
             guesses.push($.extend({who: 'solution'}, currentQuiz.solution));
 
-            $continue.hide();
+            $continue.addClass('disabled');
 
             ws.emit('solve', {positions: guesses});
         } else {
@@ -90,7 +91,7 @@ $(function() {
 
         $question.text(currentQuiz.question);
         $info.text(currentQuiz.info);
-        $continue.text('Auflösen').hide();
+        $continue.text('Auflösen').addClass('disabled');
         $playersReady.hide();
 
         guesses = [];
@@ -107,8 +108,7 @@ $(function() {
             startHeight = $start.height(),
             questionHeight = $question.innerHeight() / 3,
             playerHeight = $players.height() / 4,
-            infoHeight = $info.height(),
-            continueHeight = $continue.height();
+            infoHeight = $info.height();
 
         $start.css({
             fontSize: startHeight - fontSizeDifference,
@@ -128,11 +128,6 @@ $(function() {
         $info.css({
             fontSize: infoHeight - fontSizeDifference,
             lineHeight: infoHeight + 'px'
-        });
-        
-        $continue.css({
-            fontSize: continueHeight - fontSizeDifference,
-            lineHeight: continueHeight + 'px'
         });
     }
 });

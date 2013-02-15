@@ -12,9 +12,9 @@
 }
 
 #letters li {
-    background: #fff;
+    background: #ebebeb;
     border-radius: 12px;
-    box-shadow: 0 0 6px 2px #93b837;
+    box-shadow: 0 0 6px 2px rgba(0,0,0,0.5);
     float: left;
     height: 100%;
     list-style: none;
@@ -41,4 +41,8 @@ span {
 #cat {
     position: absolute;
     width: 100%;
+}
+
+.button {
+    height: 100%;
 }

@@ -82,12 +82,15 @@
 
 .counts ul li span {
     display: block;
-    width: 14px;
-    height: 14px;
-    border: 1px solid #000;
     border-radius: 14px;
-    background: #00cc00;
     opacity: 0;
+    background-image: -webkit-linear-gradient(rgb(112, 179, 27) 0%, rgb(75, 117, 19) 100%);
+    width: 13px;
+    height: 13px;
+    border-left: 2px solid rgb(112, 179, 27);
+    border-top: 1px solid rgb(142, 228, 32);
+    border-bottom: 3px solid rgb(75, 117, 19);
+    border-right: 2px solid rgb(79, 126, 18);
 }
 
 .counts ul li.show span {
