@@ -3,6 +3,7 @@ $(function() {
             equalNumberOfTurns: false,
             gameOver: $.noop,
             layout: 'opposite',
+            rounds: 1,
             scoreToWin: 7,
             type: 'list',
             winningRule: 'equalOrAbove'
@@ -14,19 +15,14 @@ $(function() {
                     <div class="gutter">\
                         <div class="name">{name}</div>\
                         <div class="points">\
-                            {type}\
+                            <ul>{listItems}</ul>\
                         </div>\
                     </div>\
                 </div>\
             ',
-            types: {
-                list: '\
-                    <ul>{listItems}</ul>\
-                ',
-                listItem: '\
-                    <li><span></span></li>\
-                '
-            }
+            listItem: '\
+                <li><span></span></li>\
+            '
         },
         
         score = {blue: 0, red: 0},
@@ -78,25 +74,28 @@ $(function() {
     };
     
     function getWrapperTemplate(who, name) {
-        var typeHtml = '';
+        var listHtml = '',
+            i;
         
         switch (s.type) {
             case 'list':
-                var listHtml = '',
-                    i;
-                
                 for (i = 0; i < s.scoreToWin; i++) {
-                    listHtml += tpl.types.listItem;
+                    listHtml += tpl.listItem;
                 }
                 
-                typeHtml = tpl.types.list.replace('{listItems}', listHtml);
-                
+                break;
+
+            case 'counter':
+                for (i = 0; i < s.rounds; i++) {
+                    listHtml += tpl.listItem;
+                }
+
                 break;
         }
         
         return tpl.wrapper
             .replace(/{who}/, who)
             .replace(/{name}/, name)
-            .replace(/{type}/, typeHtml);
+            .replace('{listItems}', listHtml);
     }
 });
