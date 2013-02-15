@@ -13,9 +13,8 @@ $(function() {
         ws,
         interval,
         scoreboard,
-        winner,
-        time,
-        stopTime;
+        timer,
+        winner;
     
     (function init() {
         var startPos = new google.maps.LatLng(30, 0),
@@ -34,6 +33,10 @@ $(function() {
         
         scoreboard = $.scoreboard($scoreboard, {
             gameOver: gameOver
+        });
+
+        timer = $.timer($time, {
+            timeOver: timeOver
         });
 
         ws = $.socketio('audience', {
@@ -79,18 +82,20 @@ $(function() {
         $blue.hide();
         $red.hide();
 
-        stopTime = false;
-        time = 60;
-        displayTime();
+        timer.start();
     }
 
     function stop() {
-        stopTime = true;
+        timer.stop();
     }
     
     function gameOver(who) {
         winner = who;
         ws.emit('gameOver', {winner: winner});
+    }
+
+    function timeOver() {
+        ws.emit('stop', {type: 'stop'});
     }
 
     function placeMarker() {
@@ -153,29 +158,6 @@ $(function() {
         
         if (!winner) {
             ws.emit('readyForNext');
-        }
-    }
-
-    function displayTime() {
-        var minutes = Math.floor(time / 60) + '',
-            seconds = (time % 60) + '';
-
-        while (minutes.length < 2) {
-            minutes = '0' + minutes;
-        }
-
-        while (seconds.length < 2) {
-            seconds = '0' + seconds;
-        }
-
-        $time.text(minutes + ':' + seconds);
-
-        if (time === 0 || stopTime) {
-            ws.emit('stop', {type: 'stop'});
-        } else {
-            time--;
-
-            setTimeout(displayTime, 1000);
         }
     }
 });

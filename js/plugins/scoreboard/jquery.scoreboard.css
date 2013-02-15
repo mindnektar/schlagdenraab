@@ -65,7 +65,7 @@
 
 .counts ul li {
     display: block;
-    padding: 7px;
+    padding: 5px;
     background: #333;
     border-radius: 2px;
     margin-right: 5px;
@@ -85,9 +85,9 @@
     border-radius: 14px;
     opacity: 0;
     background-image: -webkit-linear-gradient(rgb(112, 179, 27) 0%, rgb(75, 117, 19) 100%);
-    width: 13px;
-    height: 13px;
-    border-left: 2px solid rgb(112, 179, 27);
+    width: 15px;
+    height: 15px;
+    border-left: 2px solid rgb(98, 156, 24);
     border-top: 1px solid rgb(142, 228, 32);
     border-bottom: 3px solid rgb(75, 117, 19);
     border-right: 2px solid rgb(79, 126, 18);
