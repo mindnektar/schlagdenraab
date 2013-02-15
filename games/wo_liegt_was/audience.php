@@ -23,7 +23,9 @@ header('Content-Type: text/html; charset=utf-8');
     
     <div class="info blue"></div>
     <div class="info red"></div>
- 
+
+    <div id="time"></div>
+
     <div id="scoreboard"></div>
 </div>
 

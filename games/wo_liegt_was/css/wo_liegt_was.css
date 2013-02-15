@@ -35,8 +35,11 @@
 }
 
 #time {
-    height: 10%;
+    bottom: 0;
+    font-size: 52px;
     margin-top: 3%;
+    position: absolute;
+    width: 100%;
 }
 
 .player {

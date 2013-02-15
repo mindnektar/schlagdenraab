@@ -24,7 +24,6 @@ header('Content-Type: text/html; charset=utf-8');
         <div id="info"></div>
         <div class="player blue">Blau<div>ist bereit!</div></div>
         <div class="player red">Rot<div>ist bereit!</div></div>
-        <div id="time"></div>
         <a href="javascript:" id="continue" class="button"></a>
     </div>
 </div>

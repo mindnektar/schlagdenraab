@@ -5,19 +5,17 @@ $(function() {
         $playersReady = $('div', $players),
         $question = $('#question'),
         $info = $('#info'),
-        $time = $('#time'),
         $continue = $('#continue'),
 
         currentQuiz,
         guesses = [],
-        ws,
-        time,
-        stopTime;
+        ws;
     
     (function init() {
         ws = $.socketio('moderator', {
             connected: connected,
             playerInput: playerInput,
+            stop: stop,
             readyForNext: readyForNext,
             gameOver: gameOver
         });
@@ -44,9 +42,12 @@ $(function() {
         $('.player.' + data.who + ' div').show();
 
         if (guesses.length === 2) {
-            stopTime = true;
-            $continue.show();
+            stop();
         }
+    }
+
+    function stop() {
+        $continue.show();
     }
 
     function readyForNext() {
@@ -99,35 +100,6 @@ $(function() {
         $game.fadeIn(1000);
         
         setTimeout(adjustFontSize, 50);
-
-        stopTime = false;
-        time = 60;
-        displayTime();
-    }
-
-    function displayTime() {
-        var minutes = Math.floor(time / 60) + '',
-            seconds = (time % 60) + '';
-
-        while (minutes.length < 2) {
-            minutes = '0' + minutes;
-        }
-
-        while (seconds.length < 2) {
-            seconds = '0' + seconds;
-        }
-
-        $time.text(minutes + ':' + seconds);
-
-        if (time === 0 || stopTime) {
-            ws.emit('stop', {type: 'stop'});
-
-            $continue.show();
-        } else {
-            time--;
-
-            setTimeout(displayTime, 1000);
-        }
     }
 
     function adjustFontSize() {
@@ -136,7 +108,6 @@ $(function() {
             questionHeight = $question.innerHeight() / 3,
             playerHeight = $players.height() / 4,
             infoHeight = $info.height(),
-            timeHeight = $time.height(),
             continueHeight = $continue.height();
 
         $start.css({
@@ -157,11 +128,6 @@ $(function() {
         $info.css({
             fontSize: infoHeight - fontSizeDifference,
             lineHeight: infoHeight + 'px'
-        });
-
-        $time.css({
-            fontSize: timeHeight - fontSizeDifference,
-            lineHeight: timeHeight + 'px'
         });
         
         $continue.css({

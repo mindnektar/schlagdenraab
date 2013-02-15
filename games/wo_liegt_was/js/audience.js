@@ -3,6 +3,7 @@ $(function() {
         $blue = $('.info.blue'),
         $red = $('.info.red'),
         $scoreboard = $('#scoreboard'),
+        $time = $('#time'),
         
         map,
         markers = {},
@@ -12,7 +13,9 @@ $(function() {
         ws,
         interval,
         scoreboard,
-        winner;
+        winner,
+        time,
+        stopTime;
     
     (function init() {
         var startPos = new google.maps.LatLng(30, 0),
@@ -31,7 +34,7 @@ $(function() {
         
         scoreboard = $.scoreboard($scoreboard, {
             gameOver: gameOver
-        })
+        });
 
         ws = $.socketio('audience', {
             solve: solve,
@@ -70,6 +73,10 @@ $(function() {
 
         $blue.hide();
         $red.hide();
+
+        stopTime = false;
+        time = 60;
+        displayTime();
     }
     
     function gameOver(who) {
@@ -137,6 +144,29 @@ $(function() {
         
         if (!winner) {
             ws.emit('readyForNext');
+        }
+    }
+
+    function displayTime() {
+        var minutes = Math.floor(time / 60) + '',
+            seconds = (time % 60) + '';
+
+        while (minutes.length < 2) {
+            minutes = '0' + minutes;
+        }
+
+        while (seconds.length < 2) {
+            seconds = '0' + seconds;
+        }
+
+        $time.text(minutes + ':' + seconds);
+
+        if (time === 0 || stopTime) {
+            ws.emit('stop', {type: 'stop'});
+        } else {
+            time--;
+
+            setTimeout(displayTime, 1000);
         }
     }
 });
