@@ -2,17 +2,18 @@ $(function() {
     var defaults = {
             equalNumberOfTurns: false,
             gameOver: $.noop,
-            layout: 'opposite',
+            layout: 'across', // across, stacked
             nextRound: $.noop,
             rounds: 1,
             scoreToWin: 7,
-            type: 'list', // list, counter
+            size: 'small', // large, small
+            type: 'list', // counter, list
             winningRule: 'equalOrAbove' // equalOrAbove, exactly
         },
         
         tpl = {
             wrapper: '\
-                <div class="score {who} {type}">\
+                <div class="score {who} {type} {layout} {size}">\
                     <div class="gutter">\
                         <div class="name">{name}</div>\
                         <div class="points">\
@@ -127,6 +128,8 @@ $(function() {
         
         return tpl.wrapper
             .replace(/{type}/, s.type)
+            .replace(/{layout}/, s.layout)
+            .replace(/{size}/, s.size)
             .replace(/{who}/, who)
             .replace(/{name}/, name)
             .replace('{listItems}', listHtml);

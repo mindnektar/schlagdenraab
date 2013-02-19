@@ -133,6 +133,7 @@
 
 #scoreboard {
     bottom: 0;
+    height: 74px;
     position: absolute;
     width: 100%;
 }

@@ -1,17 +1,25 @@
 .score {
     border: 6px solid #ebebeb;
     border-radius: 8px;
-    bottom: 0;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     overflow: hidden;
     position: absolute;
+    top: 0;
 }
 
-.score.red {
+.score.small.stacked.red {
+    top: 84px;
+}
+
+.score.large.stacked.red {
+    top: 134px;
+}
+
+.score.across.red {
     right: 0;
 }
 
-.score.blue {
+.score.across.blue {
     left: 0;
 }
 
@@ -24,24 +32,36 @@
 }
 
 .score .name {
-    font-size: 24px;
+    float: left;
+    padding: 10px 0 10px 10px;
     font-weight: bold;
-    line-height: 42px;
-    padding: 10px 10px 10px 20px;
+    text-align: center;
     text-shadow: 2px 2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #FFF, -2px -2px 0 #fff, 0 0 10px #000;
+}
+
+.score.small .name {
+    font-size: 24px;
+    line-height: 42px;
     width: 100px;
 }
 
-.score.red .name {
-    color: #f00;
-    float: right;
-    padding: 10px 10px 10px 0;
+.score.large .name {
+    font-size: 48px;
+    line-height: 84px;
+    width: 200px;
 }
 
 .score.blue .name {
     color: #09f;
-    float: left;
-    padding: 10px 0 10px 10px;
+}
+
+.score.red .name {
+    color: #f00;
+}
+
+.score.across.red .name {
+    float: right;
+    padding: 10px 10px 10px 0;
 }
 
 .score .points {
@@ -75,23 +95,37 @@
 .score .points ul li span {
     color: #fff;
     display: block;
+    font-size: 16px;
     height: 19px;
     overflow: hidden;
+    text-align: right;
     width: 19px;
+}
+
+.score.large .points ul li span {
+    font-size: 49px;
+    height: 62px;
+    width: 93px;
 }
 
 .score.list .points ul li span {
     background: linear-gradient(to bottom, #70b31b 0%, #4b7513 100%);
     background: -webkit-linear-gradient(#70b31b 0%, #4b7513 100%);
-    border-bottom: 3px solid #4b7513;
-    border-left: 2px solid #629c18;
+    border-color: #8ee420 #4f7e12 #4b7513 #629c18;
     border-radius: 14px;
-    border-right: 2px solid #4f7e12;
-    border-top: 1px solid #8ee420;
+    border-style: solid;
+    border-width: 1px 2px 3px;
     height: 15px;
     opacity: 0;
     text-indent: 100%;
     width: 15px;
+}
+
+.score.list.large .points ul li span {
+    border-radius: 31px;
+    border-width: 2px 4px 6px;
+    height: 54px;
+    width: 54px;
 }
 
 .score .points ul li.show span {
