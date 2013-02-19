@@ -16,7 +16,8 @@
 }
 
 .score .gutter {
-    background-image: -webkit-linear-gradient(#ffcc66 0%, #ff9933 100%);
+    background: linear-gradient(to bottom, #ffcc66 0%, #ff9933 100%);
+    background: -webkit-linear-gradient(#ffcc66 0%, #ff9933 100%);
     box-shadow: 3px 3px 5px rgba(0,0,0,0.2) inset;
     height: 100%;
     overflow: hidden;
@@ -72,15 +73,24 @@
 }
 
 .score .points ul li span {
-    background-image: -webkit-linear-gradient(#70b31b 0%, #4b7513 100%);
+    color: #fff;
+    display: block;
+    height: 19px;
+    overflow: hidden;
+    width: 19px;
+}
+
+.score.list .points ul li span {
+    background: linear-gradient(to bottom, #70b31b 0%, #4b7513 100%);
+    background: -webkit-linear-gradient(#70b31b 0%, #4b7513 100%);
     border-bottom: 3px solid #4b7513;
     border-left: 2px solid #629c18;
     border-radius: 14px;
     border-right: 2px solid #4f7e12;
     border-top: 1px solid #8ee420;
-    display: block;
     height: 15px;
     opacity: 0;
+    text-indent: 100%;
     width: 15px;
 }
 

@@ -3,15 +3,16 @@ $(function() {
             equalNumberOfTurns: false,
             gameOver: $.noop,
             layout: 'opposite',
+            nextRound: $.noop,
             rounds: 1,
             scoreToWin: 7,
-            type: 'list',
-            winningRule: 'equalOrAbove'
+            type: 'list', // list, counter
+            winningRule: 'equalOrAbove' // equalOrAbove, exactly
         },
         
         tpl = {
             wrapper: '\
-                <div class="score {who}">\
+                <div class="score {who} {type}">\
                     <div class="gutter">\
                         <div class="name">{name}</div>\
                         <div class="points">\
@@ -21,11 +22,14 @@ $(function() {
                 </div>\
             ',
             listItem: '\
-                <li><span></span></li>\
+                <li><span>0</span></li>\
             '
         },
-        
-        score = {blue: 0, red: 0},
+
+        emptyRound = {blue: 0, red: 0},
+        score = [emptyRound],
+        finalScore = emptyRound,
+        round = 0,
         
         $score,
         
@@ -41,30 +45,37 @@ $(function() {
         })();
         
         this.addPoints = function(who, count) {
+            count = count || 1;
+
+            score[round][who] += count;
+
             switch (s.type) {
                 case 'list':
-                    $score.filter('.' + who).find('li').eq(score[who]).addClass('show');
+                    $score.filter('.' + who).find('li').eq(score[round][who] - count).addClass('show');
                     count = 1;
                     
                     break;
+
+                case 'counter':
+                    $score.filter('.' + who).find('li').eq(round).text(score[round][who]);
+
+                    break;
             }
-            
-            score[who] += count;
 
             switch (s.winningRule) {
                 case 'exactly':
-                    if (score[who] === s.scoreToWin) {
-                        s.gameOver(who);
+                    if (score[round][who] === s.scoreToWin) {
+                        endRound();
                     }
                     
-                    if (score[who] > s.scoreToWin) {
-                        score[who] -= count;
+                    if (score[round][who] > s.scoreToWin) {
+                        score[round][who] -= count;
                     }
                     break;
                     
                 case 'equalOrAbove':
-                    if (score[who] >= s.scoreToWin) {
-                        s.gameOver(who);
+                    if (score[round][who] >= s.scoreToWin) {
+                        endRound();
                     }
                     break;
             }
@@ -72,6 +83,27 @@ $(function() {
         
         return this;
     };
+
+    function endRound() {
+        finalScore.blue += score[round].blue;
+        finalScore.red += score[round].red;
+
+        if (round === s.rounds - 1) {
+            s.gameOver(getWinner());
+        } else {
+            score[++round] = emptyRound;
+        }
+    }
+
+    function getWinner() {
+        if (finalScore.blue > finalScore.red) {
+            return 'blue';
+        } else if (finalScore.red > finalScore.blue) {
+            return 'red';
+        } else {
+            return 'draw';
+        }
+    }
     
     function getWrapperTemplate(who, name) {
         var listHtml = '',
@@ -94,6 +126,7 @@ $(function() {
         }
         
         return tpl.wrapper
+            .replace(/{type}/, s.type)
             .replace(/{who}/, who)
             .replace(/{name}/, name)
             .replace('{listItems}', listHtml);
