@@ -1,6 +1,5 @@
 $(function() {
-    var $scoreboard = $('#scoreboard'),
-        $score;
+    var $scoreboard = $('#scoreboard');
     
     (function init() {
         var scoreboardOpts = {};
@@ -12,9 +11,5 @@ $(function() {
         });
         
         $.scoreboard($scoreboard, scoreboardOpts);
-        
-        $score = $('.score', $scoreboard)
-        
-        $score.css({marginLeft: -($score.width() / 2)})
     })();
 });

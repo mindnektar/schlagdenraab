@@ -7,14 +7,6 @@
     top: 0;
 }
 
-.score.small.stacked.red {
-    top: 84px;
-}
-
-.score.large.stacked.red {
-    top: 134px;
-}
-
 .score.across.red {
     right: 0;
 }
@@ -22,6 +14,20 @@
 .score.across.blue {
     left: 0;
 }
+
+.score.stacked {
+    left: 50%;
+    top: auto;
+}
+
+.score.stacked.blue {
+    bottom: 51%;
+}
+
+.score.stacked.red {
+    top: 51%;
+}
+
 
 .score .gutter {
     background: linear-gradient(to bottom, #ffcc66 0%, #ff9933 100%);
