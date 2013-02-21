@@ -3,7 +3,7 @@ $(function() {
         $blue = $('.info.blue'),
         $red = $('.info.red'),
         $scoreboard = $('#scoreboard'),
-        $time = $('#time'),
+        $time = $('.timer'),
         
         map,
         markers = {},

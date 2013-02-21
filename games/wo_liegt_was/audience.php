@@ -8,6 +8,7 @@ header('Content-Type: text/html; charset=utf-8');
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="../../css/main.css" />
     <link rel="stylesheet" type="text/css" href="../../js/plugins/scoreboard/jquery.scoreboard.css" />
+    <link rel="stylesheet" type="text/css" href="../../js/plugins/timer/jquery.timer.css" />
     <link rel="stylesheet" type="text/css" href="css/wo_liegt_was.css" />
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=geometry"></script>
     <script type="text/javascript" src="../../js/node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
@@ -27,7 +28,7 @@ header('Content-Type: text/html; charset=utf-8');
     <div class="info blue"></div>
     <div class="info red"></div>
 
-    <div id="time"></div>
+    <div class="timer"></div>
 
     <div id="scoreboard"></div>
 </div>

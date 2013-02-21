@@ -15,7 +15,7 @@ $(function() {
             s = $.extend({}, defaults, opts);
 
             remainingSeconds = s.seconds;
-            $timer = $elem;
+            $timer = $elem.addClass();
 
             displayTime();
         })();

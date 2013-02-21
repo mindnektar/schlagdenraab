@@ -19,71 +19,10 @@
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
-#question {
-    background: rgba(255,255,255,0.2);
-    border: 6px solid #8a8f97;
-    border-radius: 16px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5), 3px 3px 5px rgba(0,0,0,0.2) inset;
-    height: 25%;
-    padding: 6px;
-}
-
-#info {
-    color: #8a8f97;
-    font-style: italic;
-    height: 6%;
-    margin-top: 1%;
-}
-
-#time {
-    bottom: 0;
-    font-size: 52px;
-    margin-top: 3%;
-    position: absolute;
-    text-shadow: 2px 2px 0 #ebebeb, 2px -2px 0 #ebebeb, -2px 2px 0 #ebebeb, -2px -2px 0 #ebebeb;
-    width: 100%;
-}
-
-.player {
-    background: rgba(0,0,0,0.3);
-    border: 6px solid #4e535c;
-    border-radius: 16px;
-    bottom: 0;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5), 3px 3px 5px rgba(0,0,0,0.2) inset;
-    height: 58%;
-    position: absolute;
-    text-shadow: 2px 2px 0 #ebebeb, 2px -2px 0 #ebebeb, -2px 2px 0 #ebebeb, -2px -2px 0 #ebebeb, 0 0 10px rgba(0,0,0,0.8);
-    width: 30%;
-}
-
-.player div {
-    color: #000;
-    display: none;
-}
-
-.player.blue {
-    color: #09f;
-    left: 0;
-}
-
-.player.red {
-    color: #f00;
-    right: 0;
-} 
-
-#continue, #submit {
-    position: absolute;
-}
-
-#continue {
-    bottom: 20%;
-    left: 35%;
-    right: 35%;
-}
-
 #submit {
     bottom: 0;
     left: 40%;
+    position: absolute;
     right: 40%;
 }
 
