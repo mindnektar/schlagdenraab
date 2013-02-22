@@ -3,6 +3,7 @@ $(function() {
             equalNumberOfTurns: false,
             gameOver: $.noop,
             layout: 'across', // across, stacked
+            negativePossible: false,
             nextRound: $.noop,
             rounds: 1,
             scoreToWin: 7,
@@ -49,20 +50,30 @@ $(function() {
             }
         })();
         
-        this.addPoints = function(who, count) {
-            count = count || 1;
+        this.adjustPoints = function(who, count) {
+            var $list = $score.filter('.' + who).find('li');
 
-            score[round][who] += count;
+            count = parseInt(count, 10) || 1;
+
+            if (!s.negativePossible && score[round][who] + count < 0) {
+                return this;
+            }
 
             switch (s.type) {
                 case 'list':
-                    $score.filter('.' + who).find('li').eq(score[round][who] - count).addClass('show');
-                    count = 1;
+                    if (count > 0) {
+                        $list.eq(score[round][who]).addClass('show');
+                        score[round][who] += count;
+                    } else {
+                        score[round][who] += count;
+                        $list.eq(score[round][who]).removeClass('show');
+                    }
                     
                     break;
 
                 case 'counter':
-                    $score.filter('.' + who).find('li').eq(round).text(score[round][who]);
+                    score[round][who] += count;
+                    $list.eq(round).text(score[round][who]);
 
                     break;
             }

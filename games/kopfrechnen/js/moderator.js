@@ -15,7 +15,7 @@ $(function() {
             gameOver: gameOver
         });
 
-        moderator = $.moderator($game, {
+        moderator = $.moderator($game, ws, {
             next: pickQuiz,
             solve: solve
         });

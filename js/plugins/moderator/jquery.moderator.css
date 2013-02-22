@@ -63,6 +63,23 @@
     right: 0;
 }
 
+.player .adjust {
+    color: #000;
+    font-size: 59px;
+    position: absolute;
+    text-decoration: none;
+}
+
+.player .adjust.minus {
+    left: 50%;
+    margin-left: -100px;
+}
+
+.player .adjust.plus {
+    right: 50%;
+    margin-right: -100px;
+}
+
 .player .status {
     background: url(img/cellbg.png);
     border: 6px solid #4e535c;

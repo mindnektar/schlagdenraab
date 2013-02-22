@@ -61,6 +61,7 @@ input {
     font-size: 166px;
     height: 200px;
     margin-top: 10%;
+    outline: none;
     text-align: center;
     width: 600px;
 }

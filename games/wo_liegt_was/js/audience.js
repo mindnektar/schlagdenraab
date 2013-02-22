@@ -42,7 +42,8 @@ $(function() {
         ws = $.socketio('audience', {
             solve: solve,
             start: start,
-            stop: stop
+            stop: stop,
+            adjustPoints: adjustPoints
         });
     })();
     
@@ -87,6 +88,10 @@ $(function() {
 
     function stop() {
         timer.stop();
+    }
+
+    function adjustPoints(data) {
+        scoreboard.adjustPoints(data.receiver, data.points);
     }
     
     function gameOver(who) {
@@ -154,7 +159,7 @@ $(function() {
             return;
         }
 
-        scoreboard.addPoints(who);
+        scoreboard.adjustPoints(who);
         
         if (!winner) {
             ws.emit('readyForNext');

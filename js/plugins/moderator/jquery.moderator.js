@@ -10,11 +10,15 @@ $(function() {
             \
             <div class="player blue">\
                 <div class="name"><span>Blau</span></div>\
+                <a href="javascript:" class="adjust minus" data-who="blue" data-points="-1">-</a>\
+                <a href="javascript:" class="adjust plus" data-who="blue" data-points="1">+</a>\
                 <div class="status"><span></span></div>\
             </div>\
             \
             <div class="player red">\
                 <div class="name"><span>Rot</span></div>\
+                <a href="javascript:" class="adjust minus" data-who="red" data-points="-1">-</a>\
+                <a href="javascript:" class="adjust plus" data-who="red" data-points="1">+</a>\
                 <div class="status"><span></span></div>\
             </div>\
             \
@@ -29,11 +33,14 @@ $(function() {
         $info,
         $continue,
         
-        currentQuiz;
+        currentQuiz,
+        s,
+        ws;
             
-    $.moderator = function($elem, opts) {
+    $.moderator = function($elem, socket, opts) {
         (function init() {
             s = $.extend({}, defaults, opts);
+            ws = socket;
             
             $game = $elem.html(tpl);
             
@@ -45,6 +52,7 @@ $(function() {
             $continue = $('#continue');
             
             $continue.click(_continueClick);
+            $('.adjust').click(_adjustClick);
         })();
         
         this.next = function(quiz) {
@@ -90,6 +98,10 @@ $(function() {
             } else {
                 $game.fadeOut(1000, s.next);
             }
+        }
+
+        function _adjustClick() {
+            ws.emit('adjustPoints', {receiver: $(this).attr('data-who'), points: $(this).attr('data-points')});
         }
         
         return this;

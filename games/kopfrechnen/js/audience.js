@@ -1,5 +1,5 @@
 $(function() {
-    var $question = $('#question'),
+    var $question = $('#question div'),
         $scoreboard = $('#scoreboard'),
         $info = $('.info'),
 
@@ -16,7 +16,8 @@ $(function() {
         ws = $.socketio('audience', {
             solve: solve,
             start: start,
-            playerInput: playerInput
+            playerInput: playerInput,
+            adjustPoints: adjustPoints
         });
     })();
 
@@ -24,7 +25,7 @@ $(function() {
         var opponent = data.guess.who === 'blue' ? 'red' : 'blue',
             receiver = data.solution == data.guess.value ? data.guess.who : opponent;
 
-        scoreboard.addPoints(receiver);
+        scoreboard.adjustPoints(receiver);
 
         ws.emit('readyForNext');
     }
@@ -36,6 +37,10 @@ $(function() {
 
     function playerInput(data) {
         $info.filter('.' + data.who).html('<span>' + data.value + '</span>').textfill();
+    }
+
+    function adjustPoints(data) {
+        scoreboard.adjustPoints(data.receiver, data.points);
     }
 
     function gameOver(who) {
