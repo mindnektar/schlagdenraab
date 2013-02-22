@@ -21,9 +21,11 @@
 
 #submit {
     bottom: 0;
-    left: 40%;
+    left: 50%;
+    margin-left: -200px;
     position: absolute;
     right: 40%;
+    width: 400px;
 }
 
 #mapwrap {

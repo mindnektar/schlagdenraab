@@ -12,6 +12,7 @@ header('Content-Type: text/html; charset=utf-8');
     <script type="text/javascript" src="../../js/node_modules/socket.io/node_modules/socket.io-client/dist/socket.io.js"></script>
     <script type="text/javascript" src="../../js/jquery.js"></script>
     <script type="text/javascript" src="../../js/plugins/socketio/jquery.socketio.js"></script>
+    <script type="text/javascript" src="../../js/plugins/textfill/jquery.textfill.js"></script>
     <script type="text/javascript" src="../../js/plugins/moderator/jquery.moderator.js"></script>
     <script type="text/javascript" src="js/moderator.js"></script>
     <script type="text/javascript" src="js/quiz.js"></script>
@@ -19,7 +20,7 @@ header('Content-Type: text/html; charset=utf-8');
 <body>
 
 <div class="wrapper">
-    <a href="javascript:" id="start" class="button disabled">Start</a>
+    <a href="javascript:" id="start" class="button disabled"><span>Start</span></a>
 
     <div id="game"></div>
 </div>

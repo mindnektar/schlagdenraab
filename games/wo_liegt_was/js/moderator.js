@@ -2,7 +2,6 @@ $(function() {
     var $start = $('#start'),
         $game = $('#game'),
 
-        currentQuiz,
         guesses = [],
         ws,
         moderator;
@@ -21,7 +20,7 @@ $(function() {
             solve: solve
         });
 
-        $start.click(_startClick);
+        $start.textfill().click(_startClick);
     })();
 
     function connected() {
@@ -34,13 +33,13 @@ $(function() {
             lat: data.lat,
             lng: data.lng
         });
-        
-        $('.player.' + data.who + ' div').show();
 
         if (guesses.length === 2) {
             ws.emit('stop');
             stop();
         }
+
+        moderator.playerIsReady(data.who);
     }
 
     function stop() {

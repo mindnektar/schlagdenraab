@@ -251,7 +251,7 @@ $(function() {
         });
         
         $category.css({
-            fontSize: puzzleHeight - 32,
+            fontSize: puzzleHeight - 32
         })
     }
 });

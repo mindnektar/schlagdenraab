@@ -50,7 +50,7 @@ var quiz = [
         solution: {lat: 11.333333, lng: 142.2}
     },
     {
-        question: 'Wo befindet sich die größte Hindu-Tempelanlage der Welt',
+        question: 'Wo befindet sich die größte Hindu-Tempelanlage der Welt?',
         info: 'Angkor Wat, Angkor, Kambodscha',
         solution: {lat: 13.412469, lng: 103.866986}
     },

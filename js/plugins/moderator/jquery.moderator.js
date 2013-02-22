@@ -5,18 +5,26 @@ $(function() {
         },
     
         tpl = '\
-            <div id="question">\
-                <span></span>\
-            </div>\
+            <div id="question"><div></div></div>\
             <div id="info"></div>\
-            <div class="player blue">Blau<div>ist bereit!</div></div>\
-            <div class="player red">Rot<div>ist bereit!</div></div>\
+            \
+            <div class="player blue">\
+                <div class="name"><span>Blau</span></div>\
+                <div class="status"><span></span></div>\
+            </div>\
+            \
+            <div class="player red">\
+                <div class="name"><span>Rot</span></div>\
+                <div class="status"><span></span></div>\
+            </div>\
+            \
             <a href="javascript:" id="continue" class="button disabled"></a>\
         ',
             
         $game,
         $players,
-        $playersReady,
+        $playersName,
+        $playersStatus,
         $question,
         $info,
         $continue,
@@ -30,29 +38,34 @@ $(function() {
             $game = $elem.html(tpl);
             
             $players = $('.player');
-            $playersReady = $('div', $players);
-            $question = $('#question');
+            $playersName = $('.name',$players);
+            $playersStatus = $('.status', $players);
+            $question = $('#question div');
             $info = $('#info');
             $continue = $('#continue');
             
             $continue.click(_continueClick);
-            
-            adjustFontSize();
-            
-            $(window).resize(adjustFontSize);
         })();
         
         this.next = function(quiz) {
             currentQuiz = quiz;
             
-            $question.text(currentQuiz.question);
-            $info.text(currentQuiz.info || currentQuiz.solution);
+            $question.html('<span>' + currentQuiz.question + '</span>');
+            $info.html('<span>' + (currentQuiz.info || currentQuiz.solution) + '</span>');
             $continue.text('Auflösen').addClass('disabled');
-            $playersReady.hide();
+            $playersStatus.removeClass('ready');
 
             $game.fadeIn(1000);
             
-            setTimeout(adjustFontSize, 50);
+            setTimeout(function() {
+                $playersName.textfill();
+                $info.textfill();
+                $question.textfill();
+            }, 50);
+        };
+
+        this.playerIsReady = function(who) {
+            $('.player.' + who + ' .status').addClass('ready');
         };
         
         this.readyForNext = function() {
@@ -66,8 +79,7 @@ $(function() {
         };
         
         this.end = function(winner) {
-            $playersReady.hide();
-            $('.player.' + winner + ' div').text('gewinnt!').show();
+            $('.player.' + winner + ' .status').addClass('winner');
         };
         
         function _continueClick() {
@@ -81,26 +93,4 @@ $(function() {
         
         return this;
     };
-
-    function adjustFontSize() {
-        var fontSizeDifference = Math.floor(window.innerHeight / 52),
-            questionHeight = $question.innerHeight() / 3,
-            playerHeight = $players.height() / 4,
-            infoHeight = $info.height();
-        
-        $question.css({
-            fontSize: questionHeight - fontSizeDifference,
-            lineHeight: (questionHeight) + 'px'
-        });
-        
-        $players.css({
-            fontSize: playerHeight - fontSizeDifference,
-            lineHeight: playerHeight + 'px'
-        });
-        
-        $info.css({
-            fontSize: infoHeight - fontSizeDifference,
-            lineHeight: infoHeight + 'px'
-        });
-    }
 });
