@@ -3,6 +3,7 @@
 body {
     background: url('../img/bg.png');
     font-family: 'Denk One';
+    height: 100%;
     margin: 0;
     overflow: hidden;
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);

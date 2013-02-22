@@ -1,0 +1,16 @@
+.wrapper {
+    bottom: 2%;
+    left: 2%;
+    right: 2%;
+    top: 2%;
+}
+
+#camera {
+    border: 6px solid #ebebeb;
+    border-radius: 16px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    left: 50%;
+    margin-left: -640px;
+    position: absolute;
+    top: 20px;
+}

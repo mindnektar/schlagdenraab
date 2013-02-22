@@ -4,7 +4,10 @@
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     overflow: hidden;
     position: absolute;
-    top: 0;
+}
+
+.score.across {
+    bottom: 0;
 }
 
 .score.across.red {
@@ -17,7 +20,6 @@
 
 .score.stacked {
     left: 50%;
-    top: auto;
 }
 
 .score.stacked.blue {
@@ -27,7 +29,6 @@
 .score.stacked.red {
     top: 51%;
 }
-
 
 .score .gutter {
     background: linear-gradient(to bottom, #ffcc66 0%, #ff9933 100%);
