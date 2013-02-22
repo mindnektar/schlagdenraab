@@ -1,0 +1,74 @@
+.wrapper {
+    bottom: 2%;
+    left: 2%;
+    right: 2%;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    top: 2%;
+}
+
+#game {
+    display: none;
+    height: 100%;
+}
+
+#question {
+    background: rgba(255,255,255,0.2);
+    border: 6px solid #8a8f97;
+    border-radius: 16px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5), 3px 3px 5px rgba(0,0,0,0.2) inset;
+    display: table;
+    height: 25%;
+    padding: 6px;
+    width: 100%;
+}
+
+#question div {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.info {
+    bottom: 150px;
+    height: 140px;
+    position: absolute;
+    text-shadow: 2px 2px 0 #ebebeb, 2px -2px 0 #ebebeb, -2px 2px 0 #ebebeb, -2px -2px 0 #ebebeb, 0 0 10px rgba(0,0,0,0.8);
+    width: 400px;
+}
+
+.info.blue {
+    color: #09f;
+    left: 0;
+}
+
+.info.red {
+    color: #f00;
+    right: 0;
+}
+
+#scoreboard {
+    bottom: 0;
+    height: 116px;
+    position: absolute;
+    width: 100%;
+}
+
+input {
+    background: #ebebeb;
+    border: 6px solid #999;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5), 3px 3px 5px rgba(0,0,0,0.5) inset;
+    font-family: Denk One;
+    font-size: 166px;
+    height: 200px;
+    margin-top: 10%;
+    text-align: center;
+    width: 600px;
+}
+
+input.blue {
+    border-color: #09f;
+}
+
+input.red {
+    border-color: #f00;
+}

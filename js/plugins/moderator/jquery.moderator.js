@@ -79,6 +79,7 @@ $(function() {
         };
         
         this.end = function(winner) {
+            $continue.hide();
             $('.player.' + winner + ' .status').addClass('winner');
         };
         
