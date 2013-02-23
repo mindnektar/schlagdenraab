@@ -9,8 +9,7 @@ $(function() {
 
     (function init() {
         scoreboard = $.scoreboard($scoreboard, {
-            gameOver: gameOver,
-            size: 'large'
+            gameOver: gameOver
         });
 
         ws = $.socketio('audience', {
