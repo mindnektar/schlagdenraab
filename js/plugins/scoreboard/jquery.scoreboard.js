@@ -44,10 +44,6 @@ $(function() {
             $elem.html(getWrapperTemplate('blue', 'Blau') + getWrapperTemplate('red', 'Rot'));
             
             $score = $('.score');
-
-            if (s.layout === 'stacked') {
-                $score.css({marginLeft: -($score.width() / 2)})
-            }
         })();
         
         this.adjustPoints = function(who, count) {

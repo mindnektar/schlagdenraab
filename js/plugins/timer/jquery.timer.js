@@ -1,5 +1,6 @@
 $(function() {
     var defaults = {
+            dangerZone: 5,
             seconds: 60,
             timeOver: $.noop
         },
@@ -23,6 +24,7 @@ $(function() {
         this.start = function() {
             stopTime = false;
             remainingSeconds = s.seconds;
+            $timer.css({color: '#000'});
             step();
         };
 
@@ -30,13 +32,29 @@ $(function() {
             stopTime = true;
         };
 
+        this.toggle = function() {
+            stopTime = !stopTime;
+
+            if (remainingSeconds === 0) {
+                stopTime = true;
+            }
+
+            if (!stopTime) {
+                setTimeout(step, 1000);
+            }
+        };
+
         return this;
     };
 
     function step() {
+        if (stopTime) {
+            return;
+        }
+
         displayTime();
 
-        if (remainingSeconds === 0 || stopTime) {
+        if (remainingSeconds === 0) {
             s.timeOver && s.timeOver();
         } else {
             remainingSeconds--;
@@ -55,6 +73,10 @@ $(function() {
 
         while (seconds.length < 2) {
             seconds = '0' + seconds;
+        }
+
+        if (remainingSeconds === s.dangerZone) {
+            $timer.css({color: '#f00'});
         }
 
         $timer.text(minutes + ':' + seconds);

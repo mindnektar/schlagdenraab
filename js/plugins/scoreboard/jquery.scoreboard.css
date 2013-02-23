@@ -18,10 +18,6 @@
     left: 0;
 }
 
-.score.stacked {
-    left: 50%;
-}
-
 .score.stacked.blue {
     bottom: 51%;
 }

@@ -43,7 +43,6 @@ $(function() {
     }
 
     function gameOver(who) {
-        winner = who;
-        ws.emit('gameOver', {winner: winner});
+        ws.emit('gameOver', {winner: who});
     }
 });

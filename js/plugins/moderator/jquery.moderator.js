@@ -1,7 +1,8 @@
 $(function() {
     var defaults = {
             next: $.noop,
-            solve: $.noop
+            solve: $.noop,
+            timerControls: false
         },
     
         tpl = '\
@@ -22,6 +23,8 @@ $(function() {
                 <div class="status"><span></span></div>\
             </div>\
             \
+            <a href="javascript:" id="toggle-timer" class="button">Timer Start/Stop</a>\
+            <a href="javascript:" id="reset-timer" class="button">Timer zurücksetzen</a>\
             <a href="javascript:" id="continue" class="button disabled"></a>\
         ',
             
@@ -31,6 +34,8 @@ $(function() {
         $playersStatus,
         $question,
         $info,
+        $toggleTimer,
+        $resetTimer,
         $continue,
         
         currentQuiz,
@@ -42,17 +47,27 @@ $(function() {
             s = $.extend({}, defaults, opts);
             ws = socket;
             
-            $game = $elem.html(tpl);
+            $game = $elem.append(tpl);
             
             $players = $('.player');
             $playersName = $('.name',$players);
             $playersStatus = $('.status', $players);
             $question = $('#question div');
             $info = $('#info');
+            $toggleTimer = $('#toggle-timer');
+            $resetTimer = $('#reset-timer');
             $continue = $('#continue');
             
             $continue.click(_continueClick);
             $('.adjust').click(_adjustClick);
+
+            if (s.timerControls) {
+                $toggleTimer.click(_toggleTimerClick);
+                $resetTimer.click(_resetTimerClick);
+            } else {
+                $toggleTimer.hide();
+                $resetTimer.hide();
+            }
         })();
         
         this.next = function(quiz) {
@@ -98,6 +113,14 @@ $(function() {
             } else {
                 $game.fadeOut(1000, s.next);
             }
+        }
+
+        function _toggleTimerClick() {
+            ws.emit('toggleTimer');
+        }
+
+        function _resetTimerClick() {
+            ws.emit('resetTimer');
         }
 
         function _adjustClick() {

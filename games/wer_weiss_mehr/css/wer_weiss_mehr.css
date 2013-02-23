@@ -1,0 +1,64 @@
+.wrapper {
+    bottom: 2%;
+    left: 2%;
+    right: 2%;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    top: 2%;
+}
+
+#game {
+    display: none;
+    height: 100%;
+}
+
+#toggle-timer,
+#reset-timer {
+    left: 35%;
+    position: absolute;
+    right: 35%;
+}
+
+#toggle-timer {
+    bottom: 170px;
+}
+
+#reset-timer {
+    bottom: 85px;
+}
+
+#question {
+    background: rgba(255,255,255,0.2);
+    border: 6px solid #8a8f97;
+    border-radius: 16px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5), 3px 3px 5px rgba(0,0,0,0.2) inset;
+    display: table;
+    height: 25%;
+    padding: 6px;
+    width: 100%;
+}
+
+#question.audience {
+    float: right;
+    width: 48%;
+}
+
+#question div {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#scoreboard {
+    height: 236px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 561px;
+}
+
+#timer {
+    font-size: 60px;
+    margin-top: -110px;
+    position: absolute;
+    right: 200px;
+    top: 50%;
+}
