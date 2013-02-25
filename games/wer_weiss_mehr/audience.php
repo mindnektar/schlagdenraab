@@ -14,6 +14,7 @@ header('Content-Type: text/html; charset=utf-8');
     <script type="text/javascript" src="../../js/jquery.js"></script>
     <script type="text/javascript" src="../../js/plugins/scoreboard/jquery.scoreboard.js"></script>
     <script type="text/javascript" src="../../js/plugins/textfill/jquery.textfill.js"></script>
+    <script type="text/javascript" src="../../js/plugins/sound/jquery.sound.js"></script>
     <script type="text/javascript" src="../../js/plugins/timer/jquery.timer.js"></script>
     <script type="text/javascript" src="../../js/plugins/socketio/jquery.socketio.js"></script>
     <script type="text/javascript" src="js/audience.js"></script>

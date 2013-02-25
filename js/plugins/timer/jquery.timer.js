@@ -4,17 +4,13 @@ $(function() {
             seconds: 60,
             timeOver: $.noop
         },
-
-        sounds = {
-            warning: $(new Audio('/schlagdenraab/js/plugins/timer/sound/warning.ogg')).appendTo($('body'))[0],
-            end: $(new Audio('/schlagdenraab/js/plugins/timer/sound/end.ogg')).appendTo($('body'))[0]
-        },
         
         $timer,
 
         s,
         remainingSeconds,
-        stopTime;
+        stopTime,
+        sound;
     
     $.timer = function($elem, opts) {
         (function init() {
@@ -22,6 +18,7 @@ $(function() {
 
             remainingSeconds = s.seconds;
             $timer = $elem.addClass();
+            sound = $.sound(['warning', 'end']);
 
             displayTime();
         })();
@@ -60,11 +57,11 @@ $(function() {
         displayTime();
 
         if (remainingSeconds === 0) {
-            sounds.end.play();
+            sound.play('end');
             s.timeOver && s.timeOver();
         } else {
             if (remainingSeconds <= 4) {
-                sounds.warning.play();
+                sound.play('warning');
             }
 
             remainingSeconds--;
